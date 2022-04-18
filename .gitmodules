@@ -1,0 +1,3 @@
+[submodule "docs/sass-code-highlight"]
+	path = docs/sass-code-highlight
+	url = https://github.com/yaitloutou/sass-code-highlight.git

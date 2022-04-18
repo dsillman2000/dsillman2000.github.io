@@ -1,5 +1,10 @@
 @import "sass-code-highlight/default";
 
+@font-face {
+  font-family: "Nunito";
+  src: url("../assets/fonts/Nunito-Regular.tff")
+}
+
 .highlight {
   padding: 2px;
   border-radius: 10px;

@@ -5,3 +5,6 @@ kramdown:
   input: GFM
   auto_ids: true
   syntax_highlighter: rouge
+
+domain: dsillman2000.github.io
+url: https://dsillman2000.github.io

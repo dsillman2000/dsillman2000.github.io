@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Nunito";
-  src: url("../assets/fonts/Nunito-Regular.tff")
+  src: url("../fonts/Nunito-Regular.ttf")
 }
 
 .highlight {
@@ -11,7 +11,7 @@
 }
 
 body {
-  font-family: Nunito;
+  font-family: "Nunito";
   padding-left: 20%;
   padding-right: 20%;
 }

@@ -104,11 +104,11 @@
 
 .highlight .il { color: #666666; }
 
-@font-face { font-family: "Nunito"; src: url("../assets/fonts/Nunito-Regular.tff"); }
+@font-face { font-family: "Nunito"; src: url("../fonts/Nunito-Regular.ttf"); }
 
 .highlight { padding: 2px; border-radius: 10px; }
 
-body { font-family: Nunito; padding-left: 20%; padding-right: 20%; }
+body { font-family: "Nunito"; padding-left: 20%; padding-right: 20%; }
 
 .current { color: green; }
 

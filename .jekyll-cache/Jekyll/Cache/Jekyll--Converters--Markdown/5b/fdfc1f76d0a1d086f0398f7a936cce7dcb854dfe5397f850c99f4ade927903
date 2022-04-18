@@ -1,28 +1,4 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>About</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-  </head>
-  <body>
-    <nav>
-  
-    <a href="/" class="navitem">
-      Home
-    </a>
-  
-    <a href="/about.html" class="navitem current">
-      About
-    </a>
-  
-    <a href="/blog.html" class="navitem">
-      Blog
-    </a>
-  
-</nav>
-
-    <h1 id="about-page">About Page</h1>
+I"ç<h1 id="about-page">About Page</h1>
 <hr />
 <p><br />
 This page tells you a little about me.
@@ -50,6 +26,4 @@ This site was compiled via the Ruby blogging library, Jekyll.</p>
     <p>A copy of my resume is stored on this website <a href="/assets/docs/2021Resume.pdf">here</a>.</p>
   </li>
 </ul>
-
-  </body>
-</html>
+:ET

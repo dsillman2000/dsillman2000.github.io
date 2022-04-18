@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"styles.scss",
+		"_sass/main.scss"
+	],
+	"sourcesContent": [
+		"@import \"main\";\n",
+		"body {\r\n  font-family: Nunito;\r\n  padding-left: 20%;\r\n  padding-right: 20%;\r\n}\r\n\r\n.current {\r\n  color: green;\r\n}\r\n\r\n.navitem {\r\n  margin-left: 1em;\r\n  margin-right: 1em;\r\n}\r\n\r\nh1 {\r\n  text-align:center;\r\n}\r\n"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,IAAI,CAAC,EACH,WAAW,EAAE,MAAM,EACnB,YAAY,EAAE,GAAG,EACjB,aAAa,EAAE,GAAG,GACnB;;AAED,AAAA,QAAQ,CAAC,EACP,KAAK,EAAE,KAAK,GACb;;AAED,AAAA,QAAQ,CAAC,EACP,WAAW,EAAE,GAAG,EAChB,YAAY,EAAE,GAAG,GAClB;;AAED,AAAA,EAAE,CAAC,EACD,UAAU,EAAC,MAAM,GAClB"
+}

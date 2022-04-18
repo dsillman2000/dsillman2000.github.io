@@ -1,6 +1,9 @@
 markdown: kramdown
 highlighter: rouge
 
+domain: dsillman.com
+url: https://www.dsillman.com
+
 kramdown:
   input: GFM
   auto_ids: true

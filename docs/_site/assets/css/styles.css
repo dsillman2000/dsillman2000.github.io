@@ -116,6 +116,8 @@ body { font-family: "Nunito"; padding-left: 20%; padding-right: 20%; }
 
 .post-info { text-align: center; font-style: italic; }
 
+.post-content { padding-bottom: 50%; }
+
 .blog-post-title { font-size: 30px; font-weight: bold; }
 
 .blog-post-info { font-size: 16px; font-weight: normal; font-style: italic; color: #555; padding-bottom: 5px; padding-left: 20px; }

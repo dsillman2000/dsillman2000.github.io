@@ -1,4 +1,4 @@
-I"^<p>    A banana is an edible fruit – botanically a berry – produced by several kinds
+I"�<p>    A banana is an edible fruit – botanically a berry – produced by several kinds
 of large herbaceous flowering plants in the genus Musa.</p>
 
 <p><br />
@@ -9,7 +9,7 @@ starch covered with a rind, which may be green, yellow, red, purple, or brown
 when ripe.</p>
 
 <p><br />
-Here’s a math snippet:</p>
+There’s some inline $\text{math}=x^2$ in this line. Here’s a math snippet:</p>
 
 \[\iint_{D} f(x,y)\;dA \quad \sim \quad O(X)\]
 

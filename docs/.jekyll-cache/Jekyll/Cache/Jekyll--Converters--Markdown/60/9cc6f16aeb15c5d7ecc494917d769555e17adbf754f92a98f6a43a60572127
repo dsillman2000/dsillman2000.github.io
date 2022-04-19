@@ -1,34 +1,4 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Introduction to Rudin's Analysis</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-  </head>
-  <body>
-    <nav>
-  
-    <a href="/" class="navitem">
-      Home
-    </a>
-  
-    <a href="/about.html" class="navitem">
-      About
-    </a>
-  
-    <a href="/blog.html" class="navitem">
-      Blog
-    </a>
-  
-</nav>
-
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-
-<h1>Introduction to Rudin's Analysis</h1>
-<p class="post-info">18 Apr 2022 - David Sillman</p>
-<hr>
-<div class="post-content">
-  <p>    Beginning with this blog post, I am going to start a post series which seeks to summarize Walter Rudin’s highly popular 1976 real analysis textbook, <em>Principles of Real Analysis (3ed)</em>, chapter-by-chapter. In this post, I introduce the book and state my goals with the upcoming post series.</p>
+I"0<p>    Beginning with this blog post, I am going to start a post series which seeks to summarize Walter Rudin’s highly popular 1976 real analysis textbook, <em>Principles of Real Analysis (3ed)</em>, chapter-by-chapter. In this post, I introduce the book and state my goals with the upcoming post series.</p>
 
 <p><br />
 <img class="centered" width="360px" alt="Textbook cover" src="/assets/images/rudin-1976-cover.png" /></p>
@@ -57,8 +27,4 @@
   <li><strong>Chapter 10</strong>: Integration of Differential Forms</li>
   <li><strong>Chapter 11</strong>: The Lebesgue Theory</li>
 </ul>
-
-</div>
-
-  </body>
-</html>
+:ET

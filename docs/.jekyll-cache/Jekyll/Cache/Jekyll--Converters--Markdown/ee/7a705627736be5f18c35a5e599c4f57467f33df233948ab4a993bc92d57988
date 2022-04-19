@@ -1,0 +1,26 @@
+I"�	<p>    Beginning with this blog post, I am going to start a post series which seeks to summarize Walter Rudin’s highly popular 1976 real analysis textbook, <em>Principles of Real Analysis (3ed)</em>, chapter-by-chapter. In this post, I introduce the book and state my goals with the upcoming post series.</p>
+
+<p><br />
+<img class="centered" width="360px" alt="Textbook cover" src="/assets/images/rudin-1976-cover.png" /></p>
+
+<p><br />
+    I’m the sort of guy who really enjoys learning about complicated math topics on his own; there’s a unique sort of satisfaction which is derived from teaching yourself something difficult, even if it means pouring over a textbook in your free time. Moreover, reading some of the most seminal textbooks in pure mathematics will certainly aid in developing reading comprehension skills which make modern mathematics research more parseable (which is a secondary goal of mine).</p>
+
+<p><br />
+    Something I’m trying to avoid with this post series is simply copying ideas from the book; my hope is that I can gain and share a deeper understanding of the foundational concepts of the book by “de-jargoning” it; that is, making it more parseable by math novices (like myself). This might mean explaining key ideas from each chapter with pictures, or translating confusing vocabulary into simpler, ordinary concepts that the average undergrad could come to grips with.</p>
+
+<p><br />
+    Someone less familiar with the vocabulary of pure math may ask what exactly is being analyzed in the broad mathematical subject of <em>analysis</em>. There could be lots of valid answers to this question, such as <em>real functions</em>, <em>limits</em> or <em>spaces</em>. However, I have always considered analysis to be, generally, the unification of many topics within calculus. An undergrad could, quite accurately, regard analysis as the extension of calculus to more general mathematical objects.</p>
+
+<h2 id="what-does-the-book-cover">What does the book cover?</h2>
+<p>    The table of contents is laid out below:</p>
+<ul>
+  <li><strong>Chapter 1</strong>: The Real and Complex Number Systems</li>
+  <li><strong>Chapter 2</strong>: Basic Topology</li>
+  <li><strong>Chatper 3</strong>: Numerical Sequences and Series</li>
+  <li><strong>Chapter 4</strong>: Continuity</li>
+  <li><strong>Chapter 5</strong>: Differentiation</li>
+  <li><strong>Chapter 6</strong>: The Riemann-Stieltjes Integral</li>
+  <li><strong>Chapter 7</strong>: Sequences and Series of Functions</li>
+</ul>
+:ET

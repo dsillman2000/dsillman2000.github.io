@@ -387,7 +387,7 @@ gives us no compiler errors or warnings, and we can execute the resulting compil
 program to see the results we expected:
 
 <br>
-<img class="centered" alt="Cmd Line Results" src="/assets/images/autograd_linreg_output.png"/>
+<img class="centered" alt="Cmd Line Results" src="/assets/images/autograd_linreg_output.PNG"/>
 
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp; I'm satisfied with these results, because it's clear that the

@@ -1,0 +1,115 @@
+I":&<p>     I’ve spent the past two weeks just starting to get a handle
+on how to use the popular low-level, memory-safe programming language Rust. In general,
+it gives me C++ vibes when I’m programming in it. That said, I think that it could have
+good potential as a machine learning development environment, so long as it is
+supplied with the appropriate external libraries (or “crates,” to use Rust’s
+terminology.)</p>
+
+<p><br />
+     So, to get a handle on how I could use Rust specifically
+for machine learning purposes, I did some (very brief) research into what tools
+might be useful. I knew that I wanted to make use of an <em>auto-differentiation</em>
+tool, as this is essentially the bedrock of a machine learning dev environment.
+Auto-differentiation allows us to compute partial derivatives of the output of
+our models such that we can tweak and tune them into being better predictors. I looked
+over three different auto-differentiation crates:</p>
+
+<ul>
+  <li><a href="https://crates.io/crates/easy-ml"><code class="language-plaintext highlighter-rouge">easy-ml</code></a> : This is actually a much more comprehensive
+machine learning crate with lots of out-of-the-box machine learning implementations
+which are easy to implement. It also contains a module,
+<a href="https://docs.rs/easy-ml/1.8.1/easy_ml/differentiation/index.html"><code class="language-plaintext highlighter-rouge">differentiation</code></a>
+which houses its auto-differentiation engine. This module could suffice for my purposes,
+but I don’t like the overhead of needing to install all of the extra bells and whistles
+provided by <code class="language-plaintext highlighter-rouge">easy-ml</code> just to get access to its <code class="language-plaintext highlighter-rouge">differentiation</code> module. I’d rather
+use a crate which contains only the necessary tools &amp; traits for auto-differentiation
+in particular.</li>
+  <li><a href="https://crates.io/crates/autodiff"><code class="language-plaintext highlighter-rouge">autodiff</code></a> : The problem with using this crate
+in particular is that it is mostly tailored toward calculus on scalar functions,
+whereas most machine learning applications require higher-dimensional differentiation
+in the form of vectors, matrices and scalars. I don’t know if <code class="language-plaintext highlighter-rouge">autodiff</code> is necessarily
+incapable of implementing these features, but most of their examples and documentation
+emphasize their scalar equivalents.</li>
+  <li><a href="https://crates.io/crates/autograd"><code class="language-plaintext highlighter-rouge">autograd</code></a> : Of the above two alternatives,
+<code class="language-plaintext highlighter-rouge">autograd</code> certainly takes the cake for popularity and satisfies my complaints
+about the other two. The crate implements auto-differentiation  on the standard
+Rust matrix/tensor crate, <a href="https://crates.io/crates/ndarray"><code class="language-plaintext highlighter-rouge">ndarray</code></a>, which can
+allow for maximal cross-compatibility with other matrix-related crates. Moreover, it
+is very well documented and small enough for me to be able to scan the source code
+to answer questions not addressed by the documentation. Moreover, it’s easily extendible
+for custom tensor operations and I/O pipelines.</li>
+</ul>
+
+<p>     So, I decided to go with <code class="language-plaintext highlighter-rouge">autograd</code> for my auto-differentiation
+engine. I could have gone deeper into my research to find other alternatives, but
+these three appeared to be the most popular (according to crates.io), and <code class="language-plaintext highlighter-rouge">autograd</code>
+serves all of the basic purposes which I am looking for.</p>
+
+<h3 id="linear-regression-as-a-neural-network">Linear Regression as a Neural Network</h3>
+<p>     The simplest machine learning application I could come
+up with to test this crate out (which wasn’t already done in their tutorials collection)
+was a simple linear regression neural network. For those who don’t know, a neural
+network is essentially a statistical model which recursively applies a linear regression
+and some nonlinear <em>activation</em> function. So, if I wanted to use a neural network
+for the purposes of a simple, one-dimensional linear regression, I would use a 1D
+input layer connected directly to a 1D output layer with no activation function.
+The weight parameter of the single neuron in this network corresponds to the slope
+of our linear regression, while its bias parameter is the offset. This is why the
+output equation of our model would look exactly like the formula for a line:</p>
+
+\[y = mx + b \qquad \Leftrightarrow \qquad y = \text{weight}\cdot x + \text{bias}\]
+
+<p>     In a diagram, this linear regression model looks like the
+neural network pictured below:</p>
+
+<p><br />
+<img class="centered" width="360px" alt="1D Linear Reg Picture" src="/assets/images/1dlinregmodel.svg" /></p>
+
+<p><br />
+     Obviously, if this was all I wanted to use my auto-differentiation
+engine for, it would be woefully overpowered, but this is just a simple “hello world.”
+More generally, if I really wanted (only) to implement a linear regression algorithm
+in Rust, I would just use the <a href="https://en.wikipedia.org/wiki/Linear_regression#Least-squares_estimation_and_related_techniques">closed-form formula for a linear regression</a> and use
+<code class="language-plaintext highlighter-rouge">ndarray-linalg</code> for matrix multiplications and inverses to implement it. However,
+in future, I’d like to construct more complicated neural models which will require the
+full power of <code class="language-plaintext highlighter-rouge">autograd</code>, so this is a small proof-of-concept which allows me to get
+comfortable with the crate.</p>
+
+<p><br />
+     Now that I have a basic idea of what sort of model I’m
+going to be building, I can start writing some Rust code.</p>
+
+<h3 id="implementing-the-model-with-autograd">Implementing the Model with AutoGrad</h3>
+<p>     The main example from <code class="language-plaintext highlighter-rouge">autograd</code>’s GitHub repo with which
+my project has the most overlap is the <a href="https://github.com/raskr/rust-autograd/blob/master/examples/sine.rs"><code class="language-plaintext highlighter-rouge">sine.rs</code></a>
+example, which regresses a multi-layer perceptron (MLP) to the sine function.
+Because I’m doing something simpler, I’ll only be following it insofar as it is a
+useful reference for how regression works generally in <code class="language-plaintext highlighter-rouge">autograd</code>.</p>
+
+<p>The first thing I do is import a handful of modules from the crate:</p>
+
+<p><br /></p>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">use</span> <span class="n">autograd</span> <span class="k">as</span> <span class="n">ag</span><span class="p">;</span>
+  <span class="k">use</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">optimizers</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+  <span class="k">use</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">optimizers</span><span class="p">::</span><span class="nn">adam</span><span class="p">::</span><span class="n">Adam</span><span class="p">;</span>
+  <span class="k">use</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">prelude</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+  <span class="k">use</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">tensors_ops</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><br />
+The first of these just assigns a nickname, <code class="language-plaintext highlighter-rouge">ag</code>, which I can use in place of the
+longer namespace, <code class="language-plaintext highlighter-rouge">autograd</code>. After that, I’m importing tools for optimizers, the
+Adam optimizer specifically, some high-level traits from <code class="language-plaintext highlighter-rouge">autograd</code>’s prelude, and
+the <code class="language-plaintext highlighter-rouge">tensor_ops</code> module.</p>
+
+<p><br />
+Next, I create my <code class="language-plaintext highlighter-rouge">main</code> function, and start initializing the core engine of <code class="language-plaintext highlighter-rouge">autograd</code>:
+the so-called <code class="language-plaintext highlighter-rouge">VariableEnvironment</code>, along with an instance of a random number generator.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Initialize VariableEnvironment and (default seed) RNG</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">env</span> <span class="o">=</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">VariableEnvironment</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+    <span class="k">let</span> <span class="n">rng</span> <span class="o">=</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">ndarray_ext</span><span class="p">::</span><span class="nn">ArrayRng</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">f32</span><span class="o">&gt;</span><span class="p">::</span><span class="nf">default</span><span class="p">();</span>
+    <span class="c1">// --snip--</span>
+</code></pre></div></div>
+:ET

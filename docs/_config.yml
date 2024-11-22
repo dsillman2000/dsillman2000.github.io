@@ -3,6 +3,7 @@ highlighter: rouge
 
 domain: dsillman.com
 url: https://www.dsillman.com
+baseurl: "dsillman2000.github.io"
 
 kramdown:
   input: GFM
@@ -14,3 +15,9 @@ sass:
 
 compress_html:
   blanklines: false
+
+plugins:
+  - jekyll-postcss
+
+postcss:
+  cache: false

@@ -6,12 +6,21 @@
 @tailwind utilities;
 
 @layer components {
+  /* Style for MathJax blocks */
+  /* .mjx-chtml {
+    @apply text-3xl;
+  } */
+
   .w-responsive {
     @apply w-4/5 lg:w-3/5;
   }
 
   .text-responsive {
     @apply text-3xl 2xl:text-2xl;
+  }
+
+  .pre-responsive {
+    @apply text-2xl 2xl:text-xl;
   }
 
   .mb-responsive {
@@ -79,7 +88,13 @@
   }
 
   pre {
-    @apply my-6 p-6 bg-gray-100 rounded-lg border-gray-400 border overflow-x-scroll;
+    @apply pre-responsive my-6 p-6 bg-gray-100 rounded-lg border-gray-400 border overflow-x-scroll;
+  }
+
+  p > code,
+  li > code,
+  a > code {
+    @apply pre-responsive bg-gray-100 rounded-lg px-1 mx-1;
   }
 
   .center {

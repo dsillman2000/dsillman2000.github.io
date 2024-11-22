@@ -1,7 +1,11 @@
-<nav>
+<nav class="w-full h-16 space-x-10 py-4 my-auto">
   {% for item in site.data.navigation %}
-    <a href="{{item.link}}" {% if page.url == item.link %}class="navitem current"{% else %}class="navitem"{% endif %}>
-      {{item.name}}
-    </a>
+  {% assign class_name = "navitem" %}
+  {% assign class_name = class_name ~ (" current" if page.url == item.link else "") %}
+  {% assign class_name = "font-bold text-lg " ~ class_name %}
+  <!-- class="text-blue-" -->
+  <a href="{{item.link}}" class="{{ class_name }}">
+    {{item.name}}
+  </a>
   {% endfor %}
 </nav>

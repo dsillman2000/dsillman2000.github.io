@@ -1,42 +1,55 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Linear Regression in Rust with AutoGrad</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-  </head>
-  <body>
-    <nav>
+
+<head>
+  <meta charset="utf-8">
+  <title>Linear Regression in Rust with AutoGrad</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body class="font-sans w-2/3 mx-auto">
+  <nav class="w-full h-16 space-x-10 py-4 my-auto">
   
-    <a href="/" class="navitem">
-      Home
-    </a>
   
-    <a href="/about.html" class="navitem">
-      About
-    </a>
   
-    <a href="/blog.html" class="navitem">
-      Blog
-    </a>
+  
+  <!-- class="text-blue-" -->
+  <a href="/" class="font-bold text-lg ">
+    Home
+  </a>
+  
+  
+  
+  
+  <!-- class="text-blue-" -->
+  <a href="/about.html" class="font-bold text-lg ">
+    About
+  </a>
+  
+  
+  
+  
+  <!-- class="text-blue-" -->
+  <a href="/blog.html" class="font-bold text-lg ">
+    Blog
+  </a>
   
 </nav>
-
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
 <h1>Linear Regression in Rust with AutoGrad</h1>
 <p class="post-info">05 May 2022 - David Sillman</p>
 <hr>
 <div class="post-content">
-  <p>     I’ve spent the past two weeks just starting to get a handle
+  <p>I’ve spent the past two weeks just starting to get a handle
 on how to use the popular low-level, memory-safe programming language Rust. In general,
 it gives me C++ vibes when I’m programming in it. That said, I think that it could have
 good potential as a machine learning development environment, so long as it is
 supplied with the appropriate external libraries (or “crates,” to use Rust’s
 terminology.)</p>
 
-<p><br />
-     So, to get a handle on how I could use Rust specifically
+<p>So, to get a handle on how I could use Rust specifically
 for machine learning purposes, I did some (very brief) research into what tools
 might be useful. I knew that I wanted to make use of an <em>auto-differentiation</em>
 tool, as this is essentially the bedrock of a machine learning dev environment.
@@ -70,13 +83,14 @@ to answer questions not addressed by the documentation. Moreover, it’s easily 
 for custom tensor operations and I/O pipelines.</li>
 </ul>
 
-<p>     So, I decided to go with <code class="language-plaintext highlighter-rouge">autograd</code> for my auto-differentiation
+<p>So, I decided to go with <code class="language-plaintext highlighter-rouge">autograd</code> for my auto-differentiation
 engine. I could have gone deeper into my research to find other alternatives, but
 these three appeared to be the most popular (according to crates.io), and <code class="language-plaintext highlighter-rouge">autograd</code>
 serves all of the basic purposes which I am looking for.</p>
 
 <h3 id="linear-regression-as-a-neural-network">Linear Regression as a Neural Network</h3>
-<p>     The simplest machine learning application I could come
+
+<p>The simplest machine learning application I could come
 up with to test this crate out (which wasn’t already done in their tutorials collection)
 was a simple linear regression neural network. For those who don’t know, a neural
 network is essentially a statistical model which recursively applies a linear regression
@@ -89,14 +103,12 @@ output equation of our model would look exactly like the formula for a line:</p>
 
 \[y = mx + b \qquad \Leftrightarrow \qquad y = \text{weight}\cdot x + \text{bias}\]
 
-<p>     In a diagram, this linear regression model looks like the
+<p>In a diagram, this linear regression model looks like the
 neural network pictured below:</p>
 
-<p><br />
-<img class="centered" width="360px" alt="1D Linear Reg Picture" src="/assets/images/1dlinregmodel.svg" /></p>
+<p><img class="centered" width="360px" alt="1D Linear Reg Picture" src="/assets/images/1dlinregmodel.svg" /></p>
 
-<p><br />
-     Obviously, if this was all I wanted to use my auto-differentiation
+<p>Obviously, if this was all I wanted to use my auto-differentiation
 engine for, it would be woefully overpowered, but this is just a simple “hello world.”
 More generally, if I really wanted (only) to implement a linear regression algorithm
 in Rust, I would just use the <a href="https://en.wikipedia.org/wiki/Linear_regression#Least-squares_estimation_and_related_techniques">closed-form formula for a linear regression</a> and use
@@ -105,20 +117,20 @@ in future, I’d like to construct more complicated neural models which will req
 full power of <code class="language-plaintext highlighter-rouge">autograd</code>, so this is a small proof-of-concept which allows me to get
 comfortable with the crate.</p>
 
-<p><br />
-     Now that I have a basic idea of what sort of model I’m
+<p>Now that I have a basic idea of what sort of model I’m
 going to be building, I can start writing some Rust code.</p>
 
 <h3 id="implementing-the-model-with-autograd">Implementing the Model with AutoGrad</h3>
-<p>     The main example from <code class="language-plaintext highlighter-rouge">autograd</code>’s GitHub repo with which
+
+<p>The main example from <code class="language-plaintext highlighter-rouge">autograd</code>’s GitHub repo with which
 my project has the most overlap is the <a href="https://github.com/raskr/rust-autograd/blob/master/examples/sine.rs"><code class="language-plaintext highlighter-rouge">sine.rs</code></a>
 example, which regresses a multi-layer perceptron (MLP) to the sine function.
 Because I’m doing something simpler, I’ll only be following it insofar as it is a
-useful reference for how regression works generally in <code class="language-plaintext highlighter-rouge">autograd</code>.</p>
+useful reference for how regression works generally in <code class="language-plaintext highlighter-rouge">autograd</code>.
+<br />
+<br />
+The first thing I do is import a handful of modules from the crate:</p>
 
-<p>The first thing I do is import a handful of modules from the crate:</p>
-
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">use</span> <span class="n">autograd</span> <span class="k">as</span> <span class="n">ag</span><span class="p">;</span>
   <span class="k">use</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">optimizers</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
   <span class="k">use</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">optimizers</span><span class="p">::</span><span class="nn">adam</span><span class="p">::</span><span class="n">Adam</span><span class="p">;</span>
@@ -126,17 +138,14 @@ useful reference for how regression works generally in <code class="language-pla
   <span class="k">use</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">tensors_ops</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p><br />
-     The first of these just assigns a nickname, <code class="language-plaintext highlighter-rouge">ag</code>, which I can use in place of the
+<p>The first of these just assigns a nickname, <code class="language-plaintext highlighter-rouge">ag</code>, which I can use in place of the
 longer namespace, <code class="language-plaintext highlighter-rouge">autograd</code>. After that, I’m importing tools for optimizers, the
 Adam optimizer specifically, some high-level traits from <code class="language-plaintext highlighter-rouge">autograd</code>’s prelude, and
 the <code class="language-plaintext highlighter-rouge">tensor_ops</code> module.</p>
 
-<p><br />
-     Next, I create my <code class="language-plaintext highlighter-rouge">main</code> function, and start initializing the core engine of <code class="language-plaintext highlighter-rouge">autograd</code>:
+<p>Next, I create my <code class="language-plaintext highlighter-rouge">main</code> function, and start initializing the core engine of <code class="language-plaintext highlighter-rouge">autograd</code>:
 the so-called <code class="language-plaintext highlighter-rouge">VariableEnvironment</code>, along with an instance of a random number generator.</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Initialize VariableEnvironment and (default seed) RNG</span>
     <span class="k">let</span> <span class="k">mut</span> <span class="n">env</span> <span class="o">=</span> <span class="nn">ag</span><span class="p">::</span><span class="nn">VariableEnvironment</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
@@ -144,34 +153,28 @@ the so-called <code class="language-plaintext highlighter-rouge">VariableEnviron
     <span class="c1">// --snip--</span>
 </code></pre></div></div>
 
-<p><br />
-     In short, the <code class="language-plaintext highlighter-rouge">VariableEnvironment</code> is a container which
+<p>In short, the <code class="language-plaintext highlighter-rouge">VariableEnvironment</code> is a container which
 manages all of the variables which we use in learning and keeps track of how they
 change throughout the learning process. In setting it up, I register our two learned
 parameters in the <code class="language-plaintext highlighter-rouge">VariableEnvironment</code>, which involves associating them with a name:</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// --snip--</span>
     <span class="c1">// Initializing our parameter tensors</span>
     <span class="n">env</span><span class="nf">.name</span><span class="p">(</span><span class="s">"w"</span><span class="p">)</span><span class="nf">.set</span><span class="p">(</span><span class="n">rng</span><span class="nf">.standard_uniform</span><span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]));</span>
     <span class="n">env</span><span class="nf">.name</span><span class="p">(</span><span class="s">"b"</span><span class="p">)</span><span class="nf">.set</span><span class="p">(</span><span class="nn">ag</span><span class="p">::</span><span class="nn">ndarray_ext</span><span class="p">::</span><span class="nf">zeros</span><span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]));</span>
     <span class="c1">// --snip--</span>
 </code></pre></div></div>
-
-<p><br />
-     With <code class="language-plaintext highlighter-rouge">env.name()</code>, we are registering a new <code class="language-plaintext highlighter-rouge">NamedVariableSlot</code> in the environment,
+<p>With <code class="language-plaintext highlighter-rouge">env.name()</code>, we are registering a new <code class="language-plaintext highlighter-rouge">NamedVariableSlot</code> in the environment,
 which we then immediately give an initial value with the <code class="language-plaintext highlighter-rouge">set()</code> method. The arguments
 of the functions inside of the <code class="language-plaintext highlighter-rouge">set</code> call are each references to arrays of <code class="language-plaintext highlighter-rouge">usize</code>,
 each of which state that we are initializing <code class="language-plaintext highlighter-rouge">w</code> with a \(1\times 1\) tensor of
 random values, and that we are initializing <code class="language-plaintext highlighter-rouge">b</code> with a \(1\times 1\) tensor of zeros.</p>
 
-<p><br />
-     So, our next step in initializing the model is creating an
+<p>So, our next step in initializing the model is creating an
 instance of an optimizer which governs how we use the partial derivatives we compute
 in order to reduce loss and predict outputs more accurately. We’re using the Adam
 optimizer for this, which we give some parameters to:</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// --snip--</span>
     <span class="c1">// Initializing our optimizer (Adam)</span>
     <span class="k">let</span> <span class="n">adam</span> <span class="o">=</span> <span class="nn">Adam</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span>  <span class="c1">// Learning rate (alpha)</span>
@@ -184,47 +187,40 @@ optimizer for this, which we give some parameters to:</p>
     <span class="c1">// --snip--</span>
 </code></pre></div></div>
 
-<p><br />
-     All of the parameters I’ve put in above are generally considered
+<p>All of the parameters I’ve put in above are generally considered
 to be the “default” parameters for most use cases of Adam, but I’ve beefed up the
 learning rate (\(\alpha\)) by a factor of 10 to speed up learning on such a dimensionally
 small model. It’s also noteworthy that I need to provide the optimizer with the Variable
 IDs from the <code class="language-plaintext highlighter-rouge">VariableEnvironment</code> (so it knows what our learned parameters are), as
 well as a <em>mutable</em> reference to the environment. We also supply it with a name.</p>
 
-<p><br />
-     Now I start thinking about the training process. For the purposes
+<p>Now I start thinking about the training process. For the purposes
 of this project, I’d like to train the linear regressor in batches of size \(64\), over the
 course of \(1000\) epochs (i.e. batches). So I just quickly define some constants for
 these quantities:</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// Initializing training constants</span>
     <span class="k">const</span> <span class="n">N_EPOCHS</span> <span class="p">:</span> <span class="nb">usize</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
     <span class="k">const</span> <span class="n">BATCHSIZE</span> <span class="p">:</span> <span class="nb">usize</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p><br />
-     At this point, I’m almost ready to code up the training loop.
+<p>At this point, I’m almost ready to code up the training loop.
 But it feels like I’m forgetting something; perhaps the actual training data itself?
 Where am I getting that data from? Because we’re working totally with a synthetic dataset
 for this project, it suffices to define some “true” values we expect our network to learn,
 then use those values (and some data noise) to generate data points as we train. So,
 I define the parameters I’d like to learn:</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// Setting up the (synthetic) dataset</span>
     <span class="k">let</span> <span class="n">true_w</span> <span class="o">=</span> <span class="mf">2.5f32</span><span class="p">;</span>
     <span class="k">let</span> <span class="n">true_b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0f32</span><span class="p">;</span>
     <span class="k">let</span> <span class="n">noise_scale</span> <span class="o">=</span> <span class="mf">0.5f32</span><span class="p">;</span>
 </code></pre></div></div>
-
 <p><br />
-     Now we can jump into the meat of our algorithm: the training
+Now we can jump into the meat of our algorithm: the training
 loop. This consists of a <code class="language-plaintext highlighter-rouge">for</code>-loop to iterate over the epochs, along with the following
 contents which I will explain:</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// --snip--</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="n">N_EPOCHS</span> <span class="p">{</span>
         <span class="n">env</span><span class="nf">.run</span><span class="p">(|</span><span class="n">ctx</span><span class="p">|</span> <span class="p">{</span>
@@ -251,8 +247,7 @@ contents which I will explain:</p>
     <span class="c1">// --snip--</span>
 </code></pre></div></div>
 
-<p><br />
-     Here we note that we are passing a function to our <code class="language-plaintext highlighter-rouge">VariableEnvironment</code>
+<p>Here we note that we are passing a function to our <code class="language-plaintext highlighter-rouge">VariableEnvironment</code>
 via the function <code class="language-plaintext highlighter-rouge">run()</code>. This function expects its argument to be a function with an argument
 of a type called <code class="language-plaintext highlighter-rouge">Context</code>, which is often abbreviated as <code class="language-plaintext highlighter-rouge">ctx</code> in variable names,
 which I use in the closure. Anything we run inside of the closure we pass to <code class="language-plaintext highlighter-rouge">env.run()</code>
@@ -262,12 +257,10 @@ graph where nodes are variables in our model, and we have arrows between them in
 how data flows between them such that we can “trace back” how they interact with one another and
 use this data to compute partial derivatives.</p>
 
-<p><br />
-     So what does all of this mean for us? It means that anything we do
+<p>So what does all of this mean for us? It means that anything we do
 inside of <code class="language-plaintext highlighter-rouge">env.run()</code> will be “watched” by the graph so we can compute derivatives. Let’s
 take a look at what we do inside of the context closure, one digestible chunk at a time:</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="nf">standard_uniform</span><span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="n">BATCHSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ctx</span><span class="p">)</span> <span class="o">*</span> <span class="mf">20.</span> <span class="o">-</span> <span class="mf">10.</span><span class="p">;</span>     <span class="c1">// Randomly generate input coords</span>
   <span class="k">let</span> <span class="n">w</span> <span class="o">=</span> <span class="n">ctx</span><span class="nf">.variable</span><span class="p">(</span><span class="s">"w"</span><span class="p">);</span>                                      <span class="c1">// Retrieve variables</span>
   <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ctx</span><span class="nf">.variable</span><span class="p">(</span><span class="s">"b"</span><span class="p">);</span>
@@ -277,8 +270,7 @@ take a look at what we do inside of the context closure, one digestible chunk at
   <span class="k">let</span> <span class="n">z</span> <span class="o">=</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>                                       <span class="c1">// Compute LinReg predictions</span>
 </code></pre></div></div>
 
-<p><br />
-     What we initially do is generate a tensor of uniformly-distributed
+<p>What we initially do is generate a tensor of uniformly-distributed
 input coordinates, spread evenly on the interval \((-10, 10)\). Then, I call the
 <code class="language-plaintext highlighter-rouge">variable()</code> function from the <code class="language-plaintext highlighter-rouge">Context</code> instance, which allows me to retrieve a variable
 tensor by the name I assigned to it earlier on when I initialized it. The next thing I do
@@ -286,14 +278,12 @@ is generate the expected output for these data points according to the line form
 to which I add a (scaled) tensor of Gaussian noise to add some realistic data noise like
 we would see in a real dataset.</p>
 
-<p><br />
-     On the last line, I assign to <code class="language-plaintext highlighter-rouge">z</code> what’s normally called the
+<p>On the last line, I assign to <code class="language-plaintext highlighter-rouge">z</code> what’s normally called the
 “forward propagation” of the network. That is, I take the tensor batch of input points and
 propagate it through the model and compute the output which gives our model’s prediction.
 This is done through a matrix multiplication (via <code class="language-plaintext highlighter-rouge">matmul()</code> from the <code class="language-plaintext highlighter-rouge">tensor_ops</code> module)
 after which we add our bias tensor variable <code class="language-plaintext highlighter-rouge">b</code>.</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">mean_loss</span> <span class="o">=</span> <span class="nf">reduce_mean</span><span class="p">(</span><span class="nf">square</span><span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">y</span><span class="p">),</span> <span class="o">&amp;</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="k">false</span><span class="p">);</span>                <span class="c1">// Compute Mean Sq Error Loss</span>
   <span class="k">let</span> <span class="n">ns</span> <span class="o">=</span> <span class="n">ctx</span><span class="nf">.default_namespace</span><span class="p">();</span>
   <span class="k">let</span> <span class="p">(</span><span class="n">vars</span><span class="p">,</span> <span class="n">grads</span><span class="p">)</span> <span class="o">=</span> <span class="nf">grad_helper</span><span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="n">mean_loss</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">ns</span><span class="p">);</span>                     <span class="c1">// Compute gradients for variables</span>
@@ -301,8 +291,7 @@ after which we add our bias tensor variable <code class="language-plaintext high
   <span class="k">let</span> <span class="n">results</span> <span class="o">=</span> <span class="n">ctx</span><span class="nf">.evaluator</span><span class="p">()</span><span class="nf">.push</span><span class="p">(</span><span class="n">mean_loss</span><span class="p">)</span><span class="nf">.push</span><span class="p">(</span><span class="n">update_op</span><span class="p">)</span><span class="nf">.run</span><span class="p">();</span>    <span class="c1">// "Push" both loss and changes to evaluation buffer</span>
 </code></pre></div></div>
 
-<p><br />
-     In this next chunk, I start by computing the current loss
+<p>In this next chunk, I start by computing the current loss
 of the model on the current batch, storing the value in <code class="language-plaintext highlighter-rouge">mean_loss</code>. Because I’m
 using Mean Squared Error (MSE) as our loss metric, I can compute it very simply by
 constructing a tensor of the difference between our prediction and expectation (<code class="language-plaintext highlighter-rouge">z - y</code>),
@@ -312,21 +301,18 @@ in the form of a scalar (accomplished by <code class="language-plaintext highlig
 <code class="language-plaintext highlighter-rouge">false</code> to indicate that we want to discard the axis we’re taking the mean along, which
 leaves us with a scalar.</p>
 
-<p><br />
-     The next meaningful line is where we assign values to <code class="language-plaintext highlighter-rouge">vars</code> and
+<p>The next meaningful line is where we assign values to <code class="language-plaintext highlighter-rouge">vars</code> and
 <code class="language-plaintext highlighter-rouge">grads</code> - this uses the function <code class="language-plaintext highlighter-rouge">grad_helper()</code> from the <code class="language-plaintext highlighter-rouge">optimizers</code> module, to
 which I hand both an array of the loss variable(s) I’m trying to minimize (in our case,
 <code class="language-plaintext highlighter-rouge">&amp;[mean_loss]</code>, the MSE variable), as well as the namespace from our <code class="language-plaintext highlighter-rouge">Context</code> which
 contains all of our learnable parameters (in our case, <code class="language-plaintext highlighter-rouge">w</code>, and <code class="language-plaintext highlighter-rouge">b</code> as variable tensors).</p>
 
-<p><br />
-     I then use the <code class="language-plaintext highlighter-rouge">adam</code> optimizer instance to call <code class="language-plaintext highlighter-rouge">adam.get_update_op()</code>,
+<p>I then use the <code class="language-plaintext highlighter-rouge">adam</code> optimizer instance to call <code class="language-plaintext highlighter-rouge">adam.get_update_op()</code>,
 which takes in references to the variables and their respective gradients, as well as the
 <code class="language-plaintext highlighter-rouge">Context</code> instance, and returns the adjustments that need to be made to the variables
 in order to reduce the loss, which I call <code class="language-plaintext highlighter-rouge">update_op</code>.</p>
 
-<p><br />
-      In the next line, I call a sequence of functions in the form of
+<p>In the next line, I call a sequence of functions in the form of
 <code class="language-plaintext highlighter-rouge">ctx.evaluator().push().run()</code>. The <code class="language-plaintext highlighter-rouge">Context</code> instance contains an <code class="language-plaintext highlighter-rouge">Evaluator</code>, which
 actually enacts the changes suggested by our optimizer. The pattern important here is
 “pushing” values to the evaluator, then finally calling <code class="language-plaintext highlighter-rouge">run()</code> to turn those values
@@ -336,8 +322,7 @@ a set of instructions and only evaluate their output when it’s necessary is kn
 engine - the results aren’t explicitly computed (which can be costly) <em>until</em> we push
 them to the evaluator and call “run.”</p>
 
-<p><br />
-     I initially had to ask; “why are we pushing our mean loss?”
+<p>I initially had to ask; “why are we pushing our mean loss?”
 After all, that’s not necessary for any of the tensor updates. The main reason is so that
 we can print out the <em>evaluated</em> value of <code class="language-plaintext highlighter-rouge">mean_loss</code>. Because we computed <code class="language-plaintext highlighter-rouge">mean_loss</code> purely
 with tensor variables, the resulting scalar is still a tensor variable and doesn’t actually
@@ -346,37 +331,31 @@ it to the evaluator and get that numeric value lazily. In the next line, I use a
 <code class="language-plaintext highlighter-rouge">match</code> statement (which I like to think of as Rust’s equivalent of a <code class="language-plaintext highlighter-rouge">switch</code> statement)
 to print out the loss of the algorithm every 100 epochs.</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">match</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">100</span> <span class="p">{</span>
       <span class="mi">0</span> <span class="k">=&gt;</span> <span class="nd">println!</span><span class="p">(</span><span class="s">"Mean Loss (epoch {}) = {}"</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="nf">.as_ref</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">()),</span>    <span class="c1">// Print training loss every 100 epochs</span>
       <span class="n">_</span> <span class="k">=&gt;</span> <span class="p">()</span>
   <span class="p">}</span>
 </code></pre></div></div>
 
-<p><br />
-     Note that the index I’m using to select from <code class="language-plaintext highlighter-rouge">results</code> to get
+<p>Note that the index I’m using to select from <code class="language-plaintext highlighter-rouge">results</code> to get
 the numeric value of <code class="language-plaintext highlighter-rouge">mean_loss</code> corresponds to the order which we pushed symbolic
 tensors to the evaluator. Because I pushed <code class="language-plaintext highlighter-rouge">mean_loss</code> first, it takes index <code class="language-plaintext highlighter-rouge">0</code>. The
 actual entry at that index is a <code class="language-plaintext highlighter-rouge">Result</code> type (which can be either an <code class="language-plaintext highlighter-rouge">Ok</code> value for the
 numeric tensor value, or an <code class="language-plaintext highlighter-rouge">Err</code> error value), so I need to <code class="language-plaintext highlighter-rouge">unwrap()</code> it.</p>
 
-<p><br />
-     Now that we’ve coded up the training loop, the last thing there
+<p>Now that we’ve coded up the training loop, the last thing there
 is to do is handle behavior of this script after the training is complete. I’d like to
 save the learned parameters to a file, which is luckily very easy with <code class="language-plaintext highlighter-rouge">autograd</code>:</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// --snip--</span>
   <span class="n">env</span><span class="nf">.save</span><span class="p">(</span><span class="s">"results.json"</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>      <span class="c1">// Save the learned parameters to a JSON file</span>
   <span class="c1">// --snip--</span>
 </code></pre></div></div>
 
-<p><br />
-     The very last thing I do before ending the script is print to
+<p>The very last thing I do before ending the script is print to
 the command line what the learned parameters are after our last epoch, so we can
 visually compare them to their “true” values we set for our synthetic dataset.</p>
 
-<p><br /></p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// --snip--</span>
   <span class="k">let</span> <span class="n">ns</span> <span class="o">=</span> <span class="n">env</span><span class="nf">.default_namespace</span><span class="p">();</span>
   <span class="k">let</span> <span class="n">finalw</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ns</span><span class="nf">.get_array_by_name</span><span class="p">(</span><span class="s">"w"</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">()</span><span class="nf">.borrow</span><span class="p">();</span>  <span class="c1">// Borrow the learned weight value</span>
@@ -385,28 +364,25 @@ visually compare them to their “true” values we set for our synthetic datase
   <span class="nd">println!</span><span class="p">(</span><span class="s">"Final b = {}"</span><span class="p">,</span> <span class="n">finalb</span><span class="p">);</span>                           <span class="c1">// Print them out</span>
 </code></pre></div></div>
 
-<p><br />
-     Once again, I make use of the environment’s namespace, storing
+<p>Once again, I make use of the environment’s namespace, storing
 it as <code class="language-plaintext highlighter-rouge">ns</code>. It is from this <code class="language-plaintext highlighter-rouge">Namespace</code> instance which I can borrow the latest evaluated values
 assigned to each variable by calling the function <code class="language-plaintext highlighter-rouge">get_array_by_name()</code>, which also results
 in a <code class="language-plaintext highlighter-rouge">Result</code>, so we must unwrap it. However, the <code class="language-plaintext highlighter-rouge">Result</code> itself wraps a <code class="language-plaintext highlighter-rouge">RefCell</code> object
 (used often in multi-threaded applications), from which we can get the stored value via
 the <code class="language-plaintext highlighter-rouge">borrow()</code> function.</p>
 
-<p><br />
-     And that’s pretty much all there is to it! Using <code class="language-plaintext highlighter-rouge">cargo build</code>
+<p>And that’s pretty much all there is to it! Using <code class="language-plaintext highlighter-rouge">cargo build</code>
 gives us no compiler errors or warnings, and we can execute the resulting compiled
 program to see the results we expected:</p>
 
-<p><br />
-<img class="centered" alt="Cmd Line Results" src="/assets/images/autograd_linreg_output.png" /></p>
+<p><img class="centered" alt="Cmd Line Results" src="/assets/images/autograd_linreg_output.PNG" /></p>
 
-<p><br />
-     I’m satisfied with these results, because it’s clear that the
+<p>I’m satisfied with these results, because it’s clear that the
 error quickly converged within the first 700 or so epochs, and our learned parameters
 are within 0.05 of their “true values.”</p>
 
 <h3 id="where-to-go-from-here">Where to go from here</h3>
+
 <p>I’d like to find more practical uses of the auto-differentiation utilities provided by
 <code class="language-plaintext highlighter-rouge">autograd</code> in a more comprehensive machine learning project. I think the next application
 I’ll try to implement with this will be a custom Variational Autoencoder (VAE). Stay
@@ -415,5 +391,6 @@ more complicated) model in the future.</p>
 
 </div>
 
-  </body>
+</body>
+
 </html>

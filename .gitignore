@@ -3,3 +3,4 @@
 docs/.jekyll-cache
 Gemfile.lock
 docs/_site
+docs/node_modules

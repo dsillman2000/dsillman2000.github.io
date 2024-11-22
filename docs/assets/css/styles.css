@@ -97,7 +97,7 @@
     @apply pre-responsive bg-gray-100 rounded-lg px-1 mx-1;
   }
 
-  .center {
+  .centered-image {
     @apply block m-auto w-1/2;
   }
 

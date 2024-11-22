@@ -97,10 +97,6 @@
     @apply pre-responsive bg-gray-100 rounded-lg px-1 mx-1;
   }
 
-  .centered-image {
-    @apply block m-auto w-1/2;
-  }
-
   .portrait {
     @apply border-2 border-black p-5 mx-auto mb-6 w-3/5 2xl:w-1/3;
   }

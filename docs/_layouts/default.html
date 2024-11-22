@@ -8,9 +8,13 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 
-<body class="font-sans w-2/3 mx-auto">
+<body>
   {% include navigation.html %}
   {{ content }}
+  <footer>
+    <hr>
+    {% include navigation.html %}
+  </footer>
 </body>
 
 </html>

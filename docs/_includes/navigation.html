@@ -1,4 +1,4 @@
-<nav class="w-full h-16 space-x-10 py-4 my-auto">
+<nav>
   {% for item in site.data.navigation %}
   {% assign class_name = "navitem" %}
   {% assign class_name = class_name ~ (" current" if page.url == item.link else "") %}

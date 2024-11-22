@@ -68,7 +68,7 @@ $$
 In a diagram, this linear regression model looks like the
 neural network pictured below:
 
-<img class="centered" width="360px" alt="1D Linear Reg Picture" src="/assets/images/1dlinregmodel.svg"/>
+<img class="center" alt="1D Linear Reg Picture" src="/assets/images/1dlinregmodel.svg"/>
 
 Obviously, if this was all I wanted to use my auto-differentiation
 engine for, it would be woefully overpowered, but this is just a simple "hello world."
@@ -349,7 +349,7 @@ And that's pretty much all there is to it! Using `cargo build`
 gives us no compiler errors or warnings, and we can execute the resulting compiled
 program to see the results we expected:
 
-<img class="centered" alt="Cmd Line Results" src="/assets/images/autograd_linreg_output.PNG"/>
+<img class="center" alt="Cmd Line Results" src="{{ '/assets/images/autograd_linreg_output.PNG' | relative_url }}"/>
 
 I'm satisfied with these results, because it's clear that the
 error quickly converged within the first 700 or so epochs, and our learned parameters

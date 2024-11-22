@@ -14,6 +14,7 @@ jobs:
         with:
           ruby-version: 3.3.2
           bundler-cache: true
+      - run: bundle install
       - name: Setup Node
         uses: actions/setup-node@v2
         with:

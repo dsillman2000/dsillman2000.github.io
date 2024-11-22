@@ -14,12 +14,12 @@ jobs:
         with:
           ruby-version: 3.3.2
           bundler-cache: true
-      # - run: cd docs && bundle install
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: "18"
       - run: cd docs && npm install
+      - uses: snickerbockers/submodules-init@v4
       - name: Build site
         uses: limjh16/jekyll-action-ts@v2
         with:

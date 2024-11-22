@@ -1,2 +1,5 @@
 .DS_Store
 .private.readme.md
+docs/.jekyll-cache
+Gemfile.lock
+docs/_site

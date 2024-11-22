@@ -61,9 +61,11 @@ The weight parameter of the single neuron in this network corresponds to the slo
 of our linear regression, while its bias parameter is the offset. This is why the
 output equation of our model would look exactly like the formula for a line:
 
+<p class="text-responsive">
 $$
 y = mx + b \qquad \Leftrightarrow \qquad y = \text{weight}\cdot x + \text{bias}
 $$
+</p>
 
 In a diagram, this linear regression model looks like the
 neural network pictured below:

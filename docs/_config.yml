@@ -7,4 +7,10 @@ url: https://www.dsillman.com
 kramdown:
   input: GFM
   auto_ids: true
-  syntax_highlighter: rouge
+  # syntax_highlighter: rouge
+
+sass:
+  sass_dir: _sass
+
+compress_html:
+  blanklines: false

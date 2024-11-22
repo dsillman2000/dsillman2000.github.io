@@ -14,6 +14,10 @@
     @apply text-3xl 2xl:text-2xl;
   }
 
+  .pre-responsive {
+    @apply text-xl 2xl:text-lg;
+  }
+
   .mb-responsive {
     @apply mb-8 2xl:mb-6;
   }
@@ -79,7 +83,11 @@
   }
 
   pre {
-    @apply my-6 p-6 bg-gray-100 rounded-lg border-gray-400 border overflow-x-scroll;
+    @apply pre-responsive my-6 p-6 bg-gray-100 rounded-lg border-gray-400 border overflow-x-scroll;
+  }
+
+  p > code {
+    @apply bg-gray-100 rounded-lg px-1 mx-1;
   }
 
   .center {

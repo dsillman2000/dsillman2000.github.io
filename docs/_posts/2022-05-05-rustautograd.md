@@ -94,11 +94,11 @@ useful reference for how regression works generally in `autograd`.
 The first thing I do is import a handful of modules from the crate:
 
 ```rust
-  use autograd as ag;
-  use ag::optimizers::*;
-  use ag::optimizers::adam::Adam;
-  use ag::prelude::*;
-  use ag::tensors_ops::*;
+use autograd as ag;
+use ag::optimizers::*;
+use ag::optimizers::adam::Adam;
+use ag::prelude::*;
+use ag::tensors_ops::*;
 ```
 
 The first of these just assigns a nickname, `ag`, which I can use in place of the
@@ -123,11 +123,11 @@ change throughout the learning process. In setting it up, I register our two lea
 parameters in the `VariableEnvironment`, which involves associating them with a name:
 
 ```rust
-    // --snip--
-    // Initializing our parameter tensors
-    env.name("w").set(rng.standard_uniform(&[1, 1]));
-    env.name("b").set(ag::ndarray_ext::zeros(&[1, 1]));
-    // --snip--
+// --snip--
+// Initializing our parameter tensors
+env.name("w").set(rng.standard_uniform(&[1, 1]));
+env.name("b").set(ag::ndarray_ext::zeros(&[1, 1]));
+// --snip--
 ```
 With `env.name()`, we are registering a new `NamedVariableSlot` in the environment,
 which we then immediately give an initial value with the `set()` method. The arguments
@@ -141,16 +141,19 @@ in order to reduce loss and predict outputs more accurately. We're using the Ada
 optimizer for this, which we give some parameters to:
 
 ```rust
-    // --snip--
-    // Initializing our optimizer (Adam)
-    let adam = Adam::new(0.01,  // Learning rate (alpha)
-                         1e-08, // Error Toler. (epsilon)
-                         0.9,   // First Moment decay (beta1)
-                         0.999, // Second Moment decay (beta2)
-                         env.default_namespace().current_var_ids(), // Variable IDs from VariableEnvironment namespace
-                         &mut env,                                  // VariableEnvironment instance    
-                         "linear_reg_adam");                        // Name string
-    // --snip--
+// --snip--
+// Initializing our optimizer (Adam)
+let adam = Adam::new(
+  0.01,  // Learning rate (alpha)
+  1e-08, // Error Toler. (epsilon)
+  0.9,   // First Moment decay (beta1)
+  0.999, // Second Moment decay (beta2)
+  env.default_namespace().current_var_ids(), // Variable IDs from 
+                                              // VariableEnvironment namespace
+  &mut env,                                  // VariableEnvironment instance    
+  "linear_reg_adam"                          // Name string
+);
+// --snip--
 ```
 
 All of the parameters I've put in above are generally considered
@@ -166,9 +169,9 @@ course of $$1000$$ epochs (i.e. batches). So I just quickly define some constant
 these quantities:
 
 ```rust
-    // Initializing training constants
-    const N_EPOCHS : usize = 1000;
-    const BATCHSIZE : usize = 64;
+// Initializing training constants
+const N_EPOCHS : usize = 1000;
+const BATCHSIZE : usize = 64;
 ```
 
 At this point, I'm almost ready to code up the training loop.
@@ -179,10 +182,10 @@ then use those values (and some data noise) to generate data points as we train.
 I define the parameters I'd like to learn:
 
 ```rust
-    // Setting up the (synthetic) dataset
-    let true_w = 2.5f32;
-    let true_b = -1.0f32;
-    let noise_scale = 0.5f32;
+// Setting up the (synthetic) dataset
+let true_w = 2.5f32;
+let true_b = -1.0f32;
+let noise_scale = 0.5f32;
 ```
 \\
 Now we can jump into the meat of our algorithm: the training
@@ -190,30 +193,43 @@ loop. This consists of a `for`-loop to iterate over the epochs, along with the f
 contents which I will explain:
 
 ```rust
-    // --snip--
-    for epoch in 0..N_EPOCHS {
-        env.run(|ctx| {
-            let x = standard_uniform(&[BATCHSIZE, 1], ctx) * 20. - 10.;     // Randomly generate input coords
-            let w = ctx.variable("w");                                      // Retrieve variables
-            let b = ctx.variable("b");
-            let y = true_w * x + true_b +
-                    standard_normal(&[BATCHSIZE, 1], ctx) * noise_scale;    // Compute expected output (w/ noise)
+// --snip--
+for epoch in 0..N_EPOCHS {
+    env.run(|ctx| {
+        // Randomly generate input coords
+        let x = standard_uniform(&[BATCHSIZE, 1], ctx) * 20. - 10.;
 
-            let z = matmul(x, w) + b;                                       // Compute LinReg predictions
+        // Retrieve variables
+        let w = ctx.variable("w");
+        let b = ctx.variable("b");
 
-            let mean_loss = reduce_mean(square(z - y), &[0], false);                // Compute Mean Sq Error Loss
-            let ns = ctx.default_namespace();
-            let (vars, grads) = grad_helper(&[mean_loss], &ns);                     // Compute gradients for variables
-            let update_op = adam.get_update_op(&vars, &grads, ctx);                 // Compute weight/bias change
-            let results = ctx.evaluator().push(mean_loss).push(update_op).run();    // "Push" both loss and changes to evaluation buffer
+        // Compute expected output (w/ noise)
+        let y = true_w * x + true_b +
+                standard_normal(&[BATCHSIZE, 1], ctx) * noise_scale;
 
-            match epoch % 100 {
-                0 => println!("Mean Loss (epoch {}) = {}", epoch, results[0].as_ref().unwrap()),    // Print training loss every 100 epochs
-                _ => ()
-            }
-        });
-    }
-    // --snip--
+        // Compute LinReg predictions
+        let z = matmul(x, w) + b;
+
+        // Compute Mean Sq Error Loss
+        let mean_loss = reduce_mean(square(z - y), &[0], false);
+        let ns = ctx.default_namespace();
+        // Compute gradients for variables
+        let (vars, grads) = grad_helper(&[mean_loss], &ns);
+        // Compute weight/bias change
+        let update_op = adam.get_update_op(&vars, &grads, ctx);
+        // "Push" both loss and changes to evaluation buffer
+        let results = ctx.evaluator().push(mean_loss).push(update_op).run();
+
+        // Print training loss every 100 epochs
+        match epoch % 100 {
+            0 => println!(
+              "Mean Loss (epoch {}) = {}", epoch, results[0].as_ref().unwrap()
+            ),
+            _ => ()
+        }
+    });
+}
+// --snip--
 ```
 
 Here we note that we are passing a function to our `VariableEnvironment`
@@ -231,13 +247,19 @@ inside of `env.run()` will be "watched" by the graph so we can compute derivativ
 take a look at what we do inside of the context closure, one digestible chunk at a time:
 
 ```rust
-  let x = standard_uniform(&[BATCHSIZE, 1], ctx) * 20. - 10.;     // Randomly generate input coords
-  let w = ctx.variable("w");                                      // Retrieve variables
-  let b = ctx.variable("b");
-  let y = true_w * x + true_b +
-          standard_normal(&[BATCHSIZE, 1], ctx) * noise_scale;    // Compute expected output (w/ noise)
+// Randomly generate input coords
+let x = standard_uniform(&[BATCHSIZE, 1], ctx) * 20. - 10.;
 
-  let z = matmul(x, w) + b;                                       // Compute LinReg predictions
+// Retrieve variables
+let w = ctx.variable("w");
+let b = ctx.variable("b");
+
+// Compute expected output (w/ noise)
+let y = true_w * x + true_b +
+        standard_normal(&[BATCHSIZE, 1], ctx) * noise_scale;
+
+// Compute LinReg predictions
+let z = matmul(x, w) + b;
 ```
 
 What we initially do is generate a tensor of uniformly-distributed
@@ -255,11 +277,15 @@ This is done through a matrix multiplication (via `matmul()` from the `tensor_op
 after which we add our bias tensor variable `b`.
 
 ```rust
-  let mean_loss = reduce_mean(square(z - y), &[0], false);                // Compute Mean Sq Error Loss
-  let ns = ctx.default_namespace();
-  let (vars, grads) = grad_helper(&[mean_loss], &ns);                     // Compute gradients for variables
-  let update_op = adam.get_update_op(&vars, &grads, ctx);                 // Compute weight/bias change
-  let results = ctx.evaluator().push(mean_loss).push(update_op).run();    // "Push" both loss and changes to evaluation buffer
+// Compute Mean Sq Error Loss
+let mean_loss = reduce_mean(square(z - y), &[0], false);
+let ns = ctx.default_namespace();
+// Compute gradients for variables
+let (vars, grads) = grad_helper(&[mean_loss], &ns);
+// Compute weight/bias change
+let update_op = adam.get_update_op(&vars, &grads, ctx);
+// "Push" both loss and changes to evaluation buffer
+let results = ctx.evaluator().push(mean_loss).push(update_op).run();
 ```
 
 In this next chunk, I start by computing the current loss
@@ -303,10 +329,13 @@ it to the evaluator and get that numeric value lazily. In the next line, I use a
 to print out the loss of the algorithm every 100 epochs.
 
 ```rust
-  match epoch % 100 {
-      0 => println!("Mean Loss (epoch {}) = {}", epoch, results[0].as_ref().unwrap()),    // Print training loss every 100 epochs
-      _ => ()
-  }
+// Print training loss every 100 epochs
+match epoch % 100 {
+    0 => println!(
+      "Mean Loss (epoch {}) = {}", epoch, results[0].as_ref().unwrap()
+    ),
+    _ => ()
+}
 ```
 
 Note that the index I'm using to select from `results` to get
@@ -320,9 +349,9 @@ is to do is handle behavior of this script after the training is complete. I'd l
 save the learned parameters to a file, which is luckily very easy with `autograd`:
 
 ```rust
-  // --snip--
-  env.save("results.json").unwrap();      // Save the learned parameters to a JSON file
-  // --snip--
+// --snip--
+env.save("results.json").unwrap();      // Save the learned parameters to a JSON file
+// --snip--
 ```
 
 The very last thing I do before ending the script is print to
@@ -330,12 +359,14 @@ the command line what the learned parameters are after our last epoch, so we can
 visually compare them to their "true" values we set for our synthetic dataset.
 
 ```rust
-  // --snip--
-  let ns = env.default_namespace();
-  let finalw = &ns.get_array_by_name("w").unwrap().borrow();  // Borrow the learned weight value
-  let finalb = &ns.get_array_by_name("b").unwrap().borrow();  // Borrow the learned bias value
-  println!("Final w = {}", finalw);
-  println!("Final b = {}", finalb);                           // Print them out
+// --snip--
+let ns = env.default_namespace();
+// Borrow the learned weight and bias values
+let finalw = &ns.get_array_by_name("w").unwrap().borrow();
+let finalb = &ns.get_array_by_name("b").unwrap().borrow();
+// Print them out
+println!("Final w = {}", finalw);
+println!("Final b = {}", finalb);
 ```
 
 Once again, I make use of the environment's namespace, storing

@@ -184,4 +184,4 @@ X = {
 ```
 
 Nice! Now we can import YAML files from other YAML files. There's more to be done, though. In the next post, I'll talk
-about making this `!import` tag work with the YAML merge key "<<". Stay tuned!
+about making this `!import` tag work with the YAML merge key "&lt;&lt;". Stay tuned!

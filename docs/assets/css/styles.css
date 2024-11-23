@@ -32,7 +32,7 @@
   }
 
   .centered-image {
-    @apply block m-auto w-1/2;
+    @apply block m-auto w-full 2xl:w-1/2;
   }
 
   body {

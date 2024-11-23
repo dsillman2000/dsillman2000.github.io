@@ -3,7 +3,17 @@
 
 @tailwind base;
 @tailwind components;
+
+.dark-inverted {
+    @apply dark:filter dark:invert;
+}
+
+.centered-image {
+    @apply block m-auto w-full 2xl:w-1/2;
+}
+
 @tailwind utilities;
+
 
 @layer components {
 
@@ -25,14 +35,6 @@
 
   .text-color-responsive {
     @apply text-gray-900 dark:text-gray-100;
-  }
-
-  .dark-inverted {
-    @apply dark:filter dark:invert;
-  }
-
-  .centered-image {
-    @apply block m-auto w-full 2xl:w-1/2;
   }
 
   body {

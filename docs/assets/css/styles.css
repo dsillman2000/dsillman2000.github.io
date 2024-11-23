@@ -93,9 +93,9 @@
     @apply underline;
   }
 
-  .dark-inverted {
+  /* .dark-inverted {
     @apply dark:filter dark:invert;
-  }
+  } */
 
   li {
     @apply text-responsive mb-responsive;
@@ -103,7 +103,7 @@
   }
 
   pre {
-    @apply pre-responsive my-6 p-6 overflow-x-auto dark-inverted;
+    @apply pre-responsive my-6 p-6 overflow-x-auto;
   }
 
   pre.highlight {

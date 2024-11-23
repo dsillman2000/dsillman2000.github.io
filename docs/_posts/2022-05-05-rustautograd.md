@@ -70,7 +70,7 @@ $$
 In a diagram, this linear regression model looks like the
 neural network pictured below:
 
-<img class="centered-image" alt="1D Linear Reg Picture" src="/assets/images/1dlinregmodel.svg"/>
+<img class="centered-image dark-inverted" alt="1D Linear Reg Picture" src="/assets/images/1dlinregmodel.svg"/>
 
 Obviously, if this was all I wanted to use my auto-differentiation
 engine for, it would be woefully overpowered, but this is just a simple "hello world."

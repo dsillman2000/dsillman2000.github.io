@@ -113,7 +113,12 @@
   p > code,
   li > code,
   a > code {
-    @apply pre-responsive text-color-responsive bg-gray-200 dark:bg-gray-800 rounded-lg px-1 mx-1;
+    @apply pre-responsive bg-gray-200 dark:bg-gray-800 rounded-lg px-1 mx-1;
+  }
+
+  p > code,
+  li > code {
+    @apply text-color-responsive;
   }
 
   .portrait {

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="142.12903mm"
+   height="142.12903mm"
+   viewBox="0 0 142.12903 142.12903"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="favicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.1326109"
+     inkscape:cx="99.76948"
+     inkscape:cy="254.72119"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="4"
+     fit-margin-left="4"
+     fit-margin-right="4"
+     fit-margin-bottom="4" />
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="bool_op"
+       id="path-effect3461"
+       is_visible="true"
+       lpeversion="1"
+       operand-path="#rect1354-5"
+       operation="diff"
+       swap-operands="false"
+       rmv-inner="false"
+       filltype-this="from-curve"
+       filter=""
+       filltype-operand="from-curve" />
+    <filter
+       id="selectable_hidder_filter"
+       width="1"
+       height="1"
+       x="0"
+       y="0"
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="LPE boolean visibility">
+      <feComposite
+         id="boolops_hidder_primitive"
+         result="composite1"
+         operator="arithmetic"
+         in2="SourceGraphic"
+         in="BackgroundImage"
+         k1="0"
+         k2="0"
+         k3="0"
+         k4="0" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-25.898216,-55.135708)">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke-width:1.465;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect846"
+       width="134.12903"
+       height="134.12903"
+       x="29.898216"
+       y="59.135708" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:1.4292;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect1082"
+       width="5.9466071"
+       height="115.07718"
+       x="34.998772"
+       y="73.512222" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:1.42851;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect1082-4"
+       width="5.9466071"
+       height="114.96555"
+       x="152.97772"
+       y="73.512222" />
+    <rect
+       style="fill:#ffffff;fill-opacity:0.99654;stroke-width:1.36688;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect1082-4-0"
+       width="5.9466071"
+       height="105.25982"
+       x="182.52779"
+       y="-149.51894"
+       transform="rotate(90)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:1.48313;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect1082-4-0-6"
+       width="5.9466071"
+       height="123.92556"
+       x="64.07341"
+       y="-158.92433"
+       transform="rotate(90)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:1.48931;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect1354"
+       width="11.455231"
+       height="96.677803"
+       x="51.400028"
+       y="78.356873" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:1.46153;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect1354-3"
+       width="11.032063"
+       height="96.677803"
+       x="70.158081"
+       y="78.356873" />
+    <rect
+       style="fill:#d70000;fill-opacity:1;stroke-width:2.82021;stroke-linecap:square;stroke-linejoin:round;paint-order:fill markers stroke;filter:url(#selectable_hidder_filter)"
+       id="rect1354-5"
+       width="44.686764"
+       height="88.868744"
+       x="49.30267"
+       y="82.261406"
+       transform="matrix(1.1171697,0,0,1.0883579,-10.480666,-11.192811)" />
+    <path
+       style="fill:none;fill-opacity:0.477352;stroke:#ffffff;stroke-width:10.4619;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path2149"
+       inkscape:path-effect="#path-effect3461"
+       sodipodi:type="arc"
+       sodipodi:cx="93.163513"
+       sodipodi:cy="126.67586"
+       sodipodi:rx="38.265755"
+       sodipodi:ry="39.071777"
+       d="m 93.989436,87.626131 v 78.099309 c 20.751074,-0.45003 37.439414,-17.75358 37.439414,-39.04966 0,-21.29607 -16.68834,-38.599618 -37.439414,-39.049649 z"
+       transform="matrix(1.1171697,0,0,1.0883579,-10.480666,-11.192811)" />
+  </g>
+</svg>

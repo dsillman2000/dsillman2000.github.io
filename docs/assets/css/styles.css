@@ -12,6 +12,10 @@
     @apply block m-auto w-full 2xl:w-1/2;
 }
 
+.favicon-logo {
+  @apply w-10 h-10 ml-auto mr-5 my-auto;
+}
+
 @tailwind utilities;
 
 
@@ -43,7 +47,11 @@
   }
 
   nav {
-    @apply w-full h-16 space-x-10 py-4;
+    @apply flex flex-row w-full h-16 py-4;
+  }
+
+  nav > a {
+    @apply mr-10;
   }
 
   p {

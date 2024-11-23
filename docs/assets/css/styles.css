@@ -6,10 +6,6 @@
 @tailwind utilities;
 
 @layer components {
-  /* Style for MathJax blocks */
-  /* .mjx-chtml {
-    @apply text-3xl;
-  } */
 
   .w-responsive {
     @apply w-4/5 lg:w-3/5;
@@ -29,6 +25,14 @@
 
   .text-color-responsive {
     @apply text-gray-900 dark:text-gray-100;
+  }
+
+  .dark-inverted {
+    @apply dark:filter dark:invert;
+  }
+
+  .centered-image {
+    @apply block m-auto w-1/2;
   }
 
   body {
@@ -93,10 +97,6 @@
     @apply underline;
   }
 
-  /* .dark-inverted {
-    @apply dark:filter dark:invert;
-  } */
-
   li {
     @apply text-responsive mb-responsive;
     @apply text-color-responsive;
@@ -107,7 +107,7 @@
   }
 
   pre.highlight {
-    @apply bg-gray-200;
+    @apply bg-gray-200 dark-inverted;
   }
 
   p > code,

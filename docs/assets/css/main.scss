@@ -1,16 +1,10 @@
 ---
----
+--- 
 @use "highlight";
 
-.centered-image {
-    display: block;
-    margin: auto;
-    width: 50%;
-}
-
-@media (prefers-color-scheme: dark) {
-    .dark-inverted {
-        --tw-invert: invert(100%);
-        filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-    }
-}
+// @media (prefers-color-scheme: dark) {
+//     .dark-inverted {
+//         --tw-invert: invert(100%);
+//         filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+//     }
+// }

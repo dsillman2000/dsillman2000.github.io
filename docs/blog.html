@@ -1,16 +1,16 @@
 ---
 layout: default
-title: Blog
+title: Latest Posts
 ---
-<h1>Latest Posts</h1>
-<hr>
+{% include page-info.html %}
 <ul>
   {% for post in site.posts %}
-    <li>
-      <div class="blog-post-container">
-        <p class="blog-post-title"><a href="{{post.url}}">{{post.title}}</a></p><p class="blog-post-info">{{post.date | date_to_string}}</p>
-      </div>
-      {{post.excerpt}}
-    </li>
+  <li>
+    <div class="blog-post-container">
+      <p class="blog-post-title"><a href="{{post.url}}">{{post.title}}</a></p>
+      <p class="blog-post-info">{{post.date | date_to_string}}</p>
+    </div>
+    {{post.excerpt}}
+  </li>
   {% endfor %}
 </ul>

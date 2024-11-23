@@ -1,0 +1,8 @@
+<div class="page-title">
+    {% assign datetime_fmt = '%b %e, %Y %I:%M %P' %}
+    <h1>{{page.title}}</h1>
+    <div class="page-sub-info">
+        <p class="page-last-modified">Updated @ {{ page.last_modified_at | date: datetime_fmt }}</p>
+    </div>
+</div>
+<hr>

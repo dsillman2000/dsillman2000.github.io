@@ -3,14 +3,20 @@ layout: default
 title: David's Page
 ---
 
-<div>
-  <h1>{{page.title}}</h1>
-  <hr>
-  <br>
-  <img class="portrait" src="{{ '/assets/images/portrait.jpg' | relative_url }}" alt="Portrait Photo"/>
-  <br>
-  <p class="indent-0">Hello and welcome to David Sillman's personal website!</p>
-  <p class="indent-0">Some useful links are located at the top of this page. You can find contact
-    information for me on the <a href="/about.html">About</a> page, as well as
-    a copy of my CV and a link to my public social media.</p>
+<div class="homepage-container">
+  <!-- <div class="homepage-title">
+    <h1>{{page.title}}</h1>
+    <div class="homepage-sub-info">
+      <p class="homepage-last-modified">The content of this website was last updated at {{ "now"
+        | date: '%b %e, %Y %I:%M%P' }}</p>
+    </div>
+  </div> -->
+  {% include page-info.html %}
+  <div class="homepage-main">
+    <img class="portrait" src="{{ '/assets/images/portrait.jpg' | relative_url }}" alt="Portrait Photo" />
+    <p class="indent-0">Hello and welcome to David Sillman's personal website!</p>
+    <p class="indent-0">Some useful links are located at the top of this page. You can find contact
+      information for me on the <a href="/about.html">About</a> page, as well as
+      a copy of my CV and a link to my public social media.</p>
+  </div>
 </div>

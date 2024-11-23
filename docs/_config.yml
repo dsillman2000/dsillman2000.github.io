@@ -18,6 +18,7 @@ compress_html:
 
 plugins:
   - jekyll-postcss-v2
+  - jekyll-last-modified-at
 
 postcss:
   cache: false

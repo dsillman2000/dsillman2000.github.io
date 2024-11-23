@@ -2,8 +2,7 @@
 layout: default
 title: About
 ---
-# About Page
----
+{% include page-info.html %}
 \\
 This page tells you a little about me.
 \\
@@ -15,7 +14,7 @@ this website was started to contain the results or notes about personal projects
 on as well as miscellanea about what's currently going on in my life.
 \\
 \\
-This site was compiled via the Ruby blogging library, Jekyll.
+This static site was compiled via the Ruby blogging library, Jekyll and Tailwind CSS.
 
 ## Links
 

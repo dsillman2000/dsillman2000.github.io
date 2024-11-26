@@ -1,7 +1,7 @@
 ---
 layout: post
 author: David Sillman
-title: Modular YAML
+title: "Modular YAML I: a custom \"import\" tag"
 ---
 
 Since I've started working at Intuitive full-time, I've been interacting with YAML files in some capacity pretty much 
@@ -115,6 +115,7 @@ class to ensure that our custom constructor is used with this specific tag.
 ```python
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Type, Any
 import yaml
 
 @dataclass

@@ -1,5 +1,5 @@
----
----
+--- 
+--- 
 @tailwind base;
 @tailwind components;
 
@@ -205,9 +205,17 @@
     @apply text-color-responsive;
   }
 
-  details pre.highlight>code, 
+  details pre.highlight>code,
   li pre.highlight>code {
     @apply dark-inverted;
+  }
+
+  blockquote {
+    @apply text-lg italic border-l-4 border-gray-500 dark:border-gray-400 pl-4 my-6;
+  }
+
+  blockquote p {
+    @apply indent-0;
   }
 
   div.homepage-main>img.portrait {

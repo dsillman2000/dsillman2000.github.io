@@ -4,13 +4,13 @@ author: David Sillman
 title: "TF-GCP I: Provisioning GCP resources with Terraform"
 ---
 
-I was recently challenged at work to come up with a long-term personal development goal for the year. As our team is moving increasingly towards cloud computing, I know that eventually I will hit a ceiling if I don't know something about Terraform. I've heard Terraform mentioned in passing and taken some time to learn the most basic information about how it works and what projects which use it generally look like.
+I was recently challenged at work to come up with a long-term personal development goal for the year. I suck at doing that stuff. But as our team is moving increasingly towards cloud computing, I *do know* that eventually I will hit a ceiling if I don't learn *something* about building complex systems in the Cloud. This article is my first stab at that on my own dime, and with my own time.
 
-At work, our team is using Amazon (AWS) as the cloud platform for all of our services. This is probably the most economical choice, but I wanted to try something new and learn about some of the differences between AWS and Google's cloud platform, GCP (Google Cloud Platform).
+My team at work is using Amazon (AWS) as the cloud platform for all of our services. This is probably the most economical choice for most purposes, but why take the path most traveled? I wanted to try something new and learn about some of the differences between AWS and Google's cloud platform, GCP (Google Cloud Platform), so I decided I'd figure out how to use Terraform in that context.
 
 <img class="centered-image dark-inverted" alt="GCP Terraform" src="/assets/images/gcp_terraform.jpeg"/>
 
-One of the most basic things you can do in the cloud is set up a publicly-accessible static website by using cloud storage. Basically, you're just uploading static files to a cloud server and configuring it to serve those files to the public using a managed URL. This is a great way to host all sorts of things from blogs, resumes or project documentation.
+One of the most basic things you can do in the Cloud is set up a publicly-accessible static website by using cloud storage. Basically, you're just uploading static files to a cloud server and configuring it to serve those files to the public using a managed URL. This is a pretty straightforward way to host all sorts of things from blogs, resumes or project documentation.
 
 ## How they tell you to do it, vs. how you should do it
 
@@ -64,7 +64,7 @@ This will take you through an interactive set of web pages to authenticate your 
 In Google Cloud, there's a hierarchical structure to how resources are organized. At the top level, you (optionally) have an *Organization*, which may contain multiple *Projects*. Each *Project* independently manages its permissions and resources. By default, consumer GCP accounts do not have an Organization configured, so you'll create projects in the root of your account (no Organization containing them).
 
 \\
-To get started, we'll create a *Project* for the static site we want to host on GCP. I'll cal my project `davids-static-site`.
+To get started, we'll create a *Project* for the static site we want to host on GCP. I'll call my project `davids-static-site`.
 
 ```bash
 gcloud projects create davids-static-site
@@ -84,7 +84,12 @@ Once that project is created, meaning its status is "ACTIVE" in the output of th
 gcloud config set project davids-static-site
 ```
 
-The last step in ensuring our account and project are properly set up is to enable billing for the project. This is required to provision any resources in GCP. You can enable billing for the project by running the following command:
+The last step in ensuring our account and project are properly set up is to enable billing for the project. This is required to provision any resources in GCP. If you don't currently have a billing account associated with your Google Cloud account, it's easiest to do that from the Google Cloud console web interface.
+
+> You didn't think you were actually going to do anything in the Cloud without paying for it, did you?
+
+\\
+After you have a billing account and confirmed a form of payment, you can enable billing for the project by running the following command:
 
 ```bash
 # Check your available billing account IDs
@@ -162,6 +167,7 @@ This should have done a few things. First, you should see a `.terraform` directo
 
 ## Let's provision a GCS bucket
 
+\\
 Ok, great. So our Terraform project is initialized. How can we get it to provision a Google Cloud Storage (GCS) bucket for us?
 
 \\
@@ -177,6 +183,7 @@ resource "google_storage_bucket" "static_site_bucket" {
 }
 ```
 
+\\
 The syntax of a **`resource` block** is:
 
 ```hcl
@@ -189,6 +196,7 @@ So, above, we're declaring a new `google_storage_bucket` resource in the project
 
 > **Note**: I'm getting an idea of what the possible arguments are for this resource type by looking at the [Google Cloud provider documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket). The Provider docs are *very valuable* resources for understanding what you can do with a given resource type. It's basically the only way to use Terraform effectively.
 
+\\
 Now that we actually have a `resource` in our project, we can meaningfully run `terraform plan` to get a preview of what Terraform thinks it will need to provision to deploy our project.
 
 <details>
@@ -229,6 +237,7 @@ $ terraform plan
 
 </details>
 
+\\
 Ok, so two issues. The first one ("Invalid provider configuration") is because we haven't actually configured the Google Cloud provider in our project. Whoops! That's an easy fix we'll get to shortly.
 
 The second one ("Attempted to load application default credentials") is because Terraform doesn't know how to authenticate with Google Cloud. We went through a manual process to authenticate with `gcloud` earlier, but Terraform doesn't know about that. We need to tell Terraform to use the same credentials that `gcloud` is using. Thankfully, they give us a really easy command to just run to set up Terraform:
@@ -239,6 +248,7 @@ gcloud auth application-default login
 
 This command will cache some authenticated credentials on your local filesystem which Terraform will pick up for use in authenticating with Google Cloud. This is a one-time setup, so you shouldn't need to run this command again unless you change your Google Cloud credentials.
 
+\\
 Now let's create that provider configuration in our Terraform project. I like putting these in a dedicated `providers.tf` file, with one or more **`provider` blocks** defined in it:
 
 ```hcl
@@ -250,6 +260,7 @@ provider "google" {
 
 This is all that's strictly needed for Terraform to be able to use the Google Cloud provider. The `project` argument is the name of the Google Cloud project we created earlier, and the `region` argument is the default region that resources will be created in. This is a good default to set, but it can be overridden on a per-resource basis if necessary.
 
+\\
 Now that we have this provider configuration, we can run `terraform plan` again to see what Terraform thinks it needs to do to deploy our project.
 
 <details>
@@ -333,11 +344,12 @@ $ terraform apply
 
 </details>
 
+\\
 Well that wasn't expected. Let's take a moment to discuss the way Google Cloud Storage buckets work.
 
 ### The issue with GCS buckets
 
-This is frankly the most outrageous design decision I've seen on the part of the GCP team, especially coming from AWS where you can choose your bucket names pretty freely.
+> This is frankly the most outrageous design decision I've seen on the part of the GCP team, especially as someone familiar with using AWS where you can choose your bucket names pretty freely.
 
 In GCP, the bucket namespace is *global* - if somebody else has already named a GCS bucket `site-bucket` (the name we were trying to use), then we can't use that name. That means that everyone has to come up with a globally unique name for their buckets, which is a bit of a pain point. Some users of GCP suggest using a UUID or other unique identifier in the bucket name to ensure uniqueness, then using prefixing or suffixing to add a human readable component to the name.
 
@@ -347,6 +359,7 @@ Is there a way to incorporate some sort of randomness / UUID generation into our
 
 Just like there is a `google` *Provider* responsible for managing Google Cloud resources, *Providers* are a more general concept in Terraform. Some providers may do things locally on your system, or talk to non-cloud services. The `random` provider is one such provider, which can generate random values for use in your Terraform project. It treats a small program which can be used to repeatably generate random values as a resource which is provisioned and maintained by Terraform, even though it's all actually happening locally on your machine.
 
+\\
 Because it's just a provider like `google`, we'll treat it similarly and add entries to `versions.tf` and `providers.tf` to configure it:
 
 ```hcl

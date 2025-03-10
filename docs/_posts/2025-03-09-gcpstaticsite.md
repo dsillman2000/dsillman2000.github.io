@@ -1,7 +1,7 @@
 ---
 layout: post
 author: David Sillman
-title: "Provisioning GCP resources with Terraform"
+title: "TF-GCP I: Provisioning GCP resources with Terraform"
 ---
 
 I was recently challenged at work to come up with a long-term personal development goal for the year. As our team is moving increasingly towards cloud computing, I know that eventually I will hit a ceiling if I don't know something about Terraform. I've heard Terraform mentioned in passing and taken some time to learn the most basic information about how it works and what projects which use it generally look like.

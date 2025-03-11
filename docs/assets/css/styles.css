@@ -192,6 +192,10 @@
     @apply dark-inverted;
   }
 
+  h2>code {
+    @apply bg-gray-200 dark:bg-gray-700 rounded-lg px-1 mx-1;
+  }
+
   p>code,
   li>code,
   a>code,

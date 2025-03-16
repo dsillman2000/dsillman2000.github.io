@@ -68,7 +68,7 @@ Now, let's get this content uploaded to our GCS bucket - but via Terraform, of c
 
 ## GCS bucket object resources
 
-I'm going to create a new dedicated Terraform file for managing the content of my GCS bucket. I'll calle it `site_content.tf`. In this file, I'll define two `google_storage_bucket_object` resources, one for each of the HTML files I created earlier:
+I'm going to create a new dedicated Terraform file for managing the content of my GCS bucket. I'll called it `site_content.tf`. With the `google` provider, objects in cloud storage themselves can be provisioned as *resources* in Terraform. So, in this new `site_content.tf` file, I'll define two `google_storage_bucket_object` resources, one for each of the HTML files I created earlier:
 
 ```hcl
 resource "google_storage_bucket_object" "index_html" {

@@ -331,19 +331,27 @@ def build_resume():
     section_heading(doc, "Professional Experience")
 
     p = doc.add_paragraph()
-    para_spacing(p, before=80, after=10)
+    para_spacing(p, before=80, after=15)
     styled_run(p, "Intuitive Surgical", size=Pt(9.5), color=DARK, bold=True)
     styled_run(p, "   |   ", size=Pt(8.5), color=GRAY)
     styled_run(p, "Sunnyvale, CA", size=Pt(8.5), color=GRAY, italic=True)
 
-    p = doc.add_paragraph()
-    para_spacing(p, before=25, after=30)
-    styled_run(p, "Senior Data Engineer", size=Pt(8.5), color=BLUE, bold=True)
-    styled_run(p, "   |   ", size=Pt(8), color=GRAY)
-    styled_run(p, "July 2022 \u2013 Present", size=Pt(8), color=GRAY,
-               italic=True)
+    roles = [
+        ("Senior Data Engineer", "October 2025 \u2013 Present"),
+        ("Data Engineer", "March 2024 \u2013 September 2025"),
+        ("Advanced Data Analyst", "July 2022 \u2013 February 2024"),
+        ("Data Science Intern", "May 2020 \u2013 June 2022"),
+    ]
+    for i, (title, dates) in enumerate(roles):
+        p = doc.add_paragraph()
+        para_spacing(p, before=0 if i > 0 else 20, after=0)
+        pf = p.paragraph_format
+        pf.left_indent = Inches(0.2)
+        styled_run(p, title, size=Pt(8.5), color=BLUE, bold=True)
+        styled_run(p, "   |   ", size=Pt(8), color=GRAY)
+        styled_run(p, dates, size=Pt(8), color=GRAY, italic=True)
 
-    sde_bullets = [
+    bullets = [
         "**Architected Data Pipelines:** Deployed cloud-based pipelines for "
         "clinical and commercial analytics using **dbt**, **Snowflake**, and "
         "**Databricks**.",
@@ -371,42 +379,18 @@ def build_resume():
         "**Optimized Data Processing:** Migrated in-memory Python scripts to "
         "**SQL** in cloud warehouses and **PySpark** for lazy out-of-memory "
         "operations.",
+
+        "**Analyzed Clinical Data:** Parsed and organized Ion System usage "
+        "data with **Python**, **Pandas**, and **MSSQL**; built internal web "
+        "apps including a **Dash/Plotly** dashboard and a **React.js/VTK.js** "
+        "3D geometry viewer.",
     ]
-    for bullet in sde_bullets:
+
+    p_spacer = doc.add_paragraph()
+    para_spacing(p_spacer, before=15, after=0)
+
+    for bullet in bullets:
         add_bullet(doc, bullet, size=Pt(8))
-
-    p = doc.add_paragraph()
-    para_spacing(p, before=65, after=30)
-    styled_run(p, "Advanced Data Analyst", size=Pt(8.5), color=BLUE,
-               bold=True)
-    styled_run(p, "   |   ", size=Pt(8), color=GRAY)
-    styled_run(p, "July 2022 \u2013 March 2023  ", size=Pt(8), color=GRAY,
-               italic=True)
-    styled_run(p, "(concurrent)", size=Pt(7.5), color=GRAY, italic=True)
-
-    ada_bullets = [
-        "Analyzed clinical usage data for the Ion System with **Python**, "
-        "**Pandas**, and **MSSQL**.",
-
-        "Built internal web apps: a **Dash/Plotly** visualization dashboard "
-        "with **Jinja** and a **React.js/VTK.js** 3D geometry viewer.",
-    ]
-    for bullet in ada_bullets:
-        add_bullet(doc, bullet, size=Pt(8))
-
-    p = doc.add_paragraph()
-    para_spacing(p, before=65, after=5)
-    styled_run(p, "Data Science Intern", size=Pt(8.5), color=BLUE, bold=True)
-    styled_run(p, "   |   ", size=Pt(8), color=GRAY)
-    styled_run(p, "May 2020 \u2013 April 2022", size=Pt(8), color=GRAY,
-               italic=True)
-
-    add_bullet(
-        doc,
-        "Analyzed clinical usage data, laying the groundwork for the "
-        "pipelines and apps developed in subsequent roles.",
-        size=Pt(8),
-    )
 
     # =========================================================================
     # SELECT PROJECT HIGHLIGHTS

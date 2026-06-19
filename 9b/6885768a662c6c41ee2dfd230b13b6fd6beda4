@@ -1,0 +1,42 @@
+_config.yml
+  s_8767fdc22c16c1::t_cb696cbf73fb3b 17-24
+Makefile
+  s_8767fdc22c16c1::t_96b0bcd8c6bfd0 1-17,20-24
+_layouts/default.html
+  s_8767fdc22c16c1::t_25ec27b7624771 7-21
+.github/workflows/github-pages-mzrn.yml
+  s_8767fdc22c16c1::t_f85c527c93de73 37
+  s_8767fdc22c16c1::t_c99dc8dda77a26 30,32-36,41
+  s_8767fdc22c16c1::t_9c2432aaa64176 25
+.gitmodules
+  s_8767fdc22c16c1::t_7ad0c10d9afb60 1
+.ruby-version
+  s_8767fdc22c16c1::t_dd386f1e06203f 1
+styles.css
+  s_8767fdc22c16c1::t_efd77c9f42afe3 1-2
+_css/styles.css
+  s_8767fdc22c16c1::t_2b2fb11624d8bf 1-44,46-53,55-57,59-65,68-71,73-76,78-81,83-86,88-90,92-148,151-153,155-169,171-174,176-178,180-198
+  s_8767fdc22c16c1::t_c806eda8130a43 45,54,58,66-67,72,77,82,87,91,149-150,154,170,175,179
+.gitignore
+  s_8767fdc22c16c1::t_e610cabefbdf5c 3-5
+package.json
+  s_8767fdc22c16c1::t_1513a73ad414c6 2-4
+.node-version
+  s_8767fdc22c16c1::t_d3991e30e2500d 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "9b6885768a662c6c41ee2dfd230b13b6fd6beda4",
+  "prompts": {},
+  "sessions": {
+    "s_8767fdc22c16c1": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11e9dc154ffes40LqglIj4dWGi",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+Makefile
+  s_4643d18891c6dd::t_a81d3ce5af6bee 3
+  s_4643d18891c6dd::t_ee0cd4d02ede69 32-35
+  s_4643d18891c6dd::t_d73f663d0de90b 36
+about.md
+  s_4643d18891c6dd::t_4610f38d0624ba 23
+  h_4cc74772b10fd4 22
+build_resume.py
+  s_4643d18891c6dd::t_244d081a6ce5d3 1-481
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "e4870ba725e393fa6d9d530f7bd57dd10e88691b",
+  "prompts": {},
+  "humans": {
+    "h_4cc74772b10fd4": {
+      "author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  },
+  "sessions": {
+    "s_4643d18891c6dd": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11e260326ffeiucyCxpRSbbVKE",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

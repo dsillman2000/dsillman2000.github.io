@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: install serve build css clean fonts
+.PHONY: install serve build css clean fonts resume
 
 FNM_SH := eval "$$(fnm env)" &&
 
@@ -29,3 +29,8 @@ fonts:
 		https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/InterVariable.woff2
 	curl -sL -o assets/fonts/RobotoMono-Variable.woff2 \
 		"https://raw.githubusercontent.com/googlefonts/RobotoMono/main/fonts/webfonts/RobotoMono%5Bwght%5D.woff2"
+
+resume:
+	mkdir -p assets/docs
+	OUTPUT_DIR=assets/docs python3 build_resume.py
+	soffice --headless --convert-to pdf --outdir assets/docs assets/docs/David_Sillman_Resume.docx

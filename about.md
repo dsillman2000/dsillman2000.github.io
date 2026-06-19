@@ -19,4 +19,5 @@ This static site was compiled via the Ruby blogging library, Jekyll and Tailwind
 
 * My GitHub page is located [here](https://github.com/dsillman2000).
 
-* A copy of my resume is stored on this website [here](/assets/docs/2021Resume.pdf).
+* My resume is hosted on this website [here](/assets/docs/David_Sillman_Resume.pdf).
+

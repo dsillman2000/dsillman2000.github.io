@@ -11,7 +11,7 @@ dev: css
 	$(FNM_SH) npx @tailwindcss/cli -i _css/styles.css -o styles.css --watch & \
 	CSS_PID=$$!; \
 	trap "kill $$CSS_PID 2>/dev/null" EXIT; \
-	bundle exec jekyll serve --livereload
+	bundle exec jekyll serve --livereload --host 0.0.0.0
 
 build: css
 	bundle exec jekyll build

@@ -1,0 +1,28 @@
+_css/styles.css
+  s_8767fdc22c16c1::t_cd653c50cb4647 95
+styles.css
+  s_8767fdc22c16c1::t_237c42345147f2 2
+Makefile
+  h_4cc74772b10fd4 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "d1eeee7abc613a6c0a270fa210a4571d9d524e92",
+  "prompts": {},
+  "humans": {
+    "h_4cc74772b10fd4": {
+      "author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  },
+  "sessions": {
+    "s_8767fdc22c16c1": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11e9dc154ffes40LqglIj4dWGi",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

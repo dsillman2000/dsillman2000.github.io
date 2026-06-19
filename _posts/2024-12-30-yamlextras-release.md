@@ -2,6 +2,7 @@
 layout: post
 author: David Sillman
 title: "Modular YAML released: <code>yaml-extras</code> on PyPI"
+related: [yamlextras, yamlextras-ii, yamlextras-iii]
 ---
 
 I'm proud to announce that I've made my first official contribution to the Python Package Index

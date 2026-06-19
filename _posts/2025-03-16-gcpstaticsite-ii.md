@@ -2,6 +2,7 @@
 layout: post
 author: David Sillman
 title: "TF-GCP II: Uploading static content to GCP storage"
+related: [gcpstaticsite]
 ---
 
 In the last article, we were able to successfully deploy a Google Cloud Storage (GCS) bucket using Terraform. It was a little bit anticlimactic, since the only real indication that we had done anything at all was the output of `gsutil ls` showing that the bucket was created. In this article, we'll get closer to our goal of hosting a static site on GCS by getting our implementation to the point where there's actually a URL we can visit and see some static site content.

@@ -1,21 +1,87 @@
 <!doctype html>
-<html>
+<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
-  <link rel="shortcut icon" type="image/x-icon" href="{{ 'assets/images/favicon.ico' | relative_url }}">
-</head>
+  {% include head.html %}
 
-<body>
-  {% include navigation.html %}
-  {{ content }}
-  <footer>
-    {{ above_footer }}
-    <hr>
-    {% include navigation.html %}
-  </footer>
-</body>
+  <body>
 
+    <div class="site-container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
+          <small>{{ site.tagline }}</small>
+        </h3>
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </header>
+
+      <main>
+        <div class="post-with-sidebar">
+          {% include post-sidebar.html %}
+          <div class="post-content-area">
+            {{ content }}
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var toggle = document.querySelector(".post-sidebar-toggle");
+        var sidebar = document.querySelector(".post-sidebar");
+        var backdrop = document.querySelector(".post-sidebar-backdrop");
+        if (toggle && sidebar && backdrop) {
+          function open() {
+            sidebar.classList.add("open");
+            backdrop.classList.add("open");
+            toggle.setAttribute("aria-expanded", "true");
+          }
+          function close() {
+            sidebar.classList.remove("open");
+            backdrop.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+          }
+          toggle.addEventListener("click", function () {
+            sidebar.classList.contains("open") ? close() : open();
+          });
+          backdrop.addEventListener("click", close);
+        }
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var toggle = document.querySelector(".theme-toggle");
+        if (!toggle) return;
+        toggle.addEventListener("click", function () {
+          var current = document.documentElement.getAttribute("data-theme");
+          if (!current) {
+            current = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          var next = current === "dark" ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", next);
+          localStorage.setItem("theme", next);
+        });
+      })();
+    </script>
+
+    {% if site.ga_analytics %}
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+       ga('create', '{{ site.ga_analytics }}', 'auto');
+       ga('send', 'pageview');
+     </script>
+    {% endif %}
+  </body>
 </html>

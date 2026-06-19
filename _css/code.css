@@ -1,0 +1,53 @@
+code,
+pre {
+  font-family: var(--font-code);
+}
+
+code {
+  font-size: 85%;
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: var(--spacer-3);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.highlight {
+  padding: var(--spacer);
+  margin-bottom: var(--spacer);
+  background-color: var(--code-bg);
+  border-radius: var(--radius-default);
+
+  pre {
+    margin-bottom: 0;
+  }
+
+  .highlight {
+    padding: 0;
+  }
+}
+
+.rouge-table {
+  margin-bottom: 0;
+  font-size: 100%;
+
+  &,
+  td,
+  th {
+    border: 0;
+  }
+
+  .gutter {
+    vertical-align: top;
+    user-select: none;
+    opacity: .25;
+  }
+}
+
+.gist .markdown-body {
+  padding: 15px !important;
+}

@@ -1,8 +1,13 @@
+# Setup
+title: David's Page
+tagline: David Sillman's personal website
+url: https://www.dsillman.com
+domain: dsillman.com
+baseurl: ""
+permalink: pretty
+
 markdown: kramdown
 highlighter: rouge
-
-domain: dsillman.com
-url: https://www.dsillman.com
 
 kramdown:
   input: GFM
@@ -11,14 +16,37 @@ kramdown:
 compress_html:
   blanklines: false
 
+# Gems
 plugins:
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-seo-tag
   - jekyll-last-modified-at
 
+# Optimize Jekyll
 exclude:
+  - .editorconfig
+  - .git
+  - .jekyll-cache
   - _css
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE.md
+  - README.md
   - node_modules
   - package.json
   - package-lock.json
+  - AGENTS.md
+  - .opencode
+  - .github
   - Makefile
   - readme.md
-  - .github
+  - compile-favicon.sh
+
+# Specify the author for blog posts
+author:
+  name: David Sillman
+  url: https://github.com/dsillman2000
+
+# Custom vars
+repository: https://github.com/dsillman2000/dsillman2000.github.io

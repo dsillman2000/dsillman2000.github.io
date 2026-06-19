@@ -1,0 +1,20 @@
+.site-container {
+  max-width: 45rem;
+  padding-left: var(--spacer-2);
+  padding-right: var(--spacer-2);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  margin-top: var(--spacer-3);
+  margin-bottom: var(--spacer-3);
+}
+
+.landing-logo {
+  display: block;
+  max-width: 14rem;
+  margin: 0 auto var(--spacer-3);
+  border-radius: var(--radius-default);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}

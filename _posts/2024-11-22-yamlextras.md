@@ -2,6 +2,7 @@
 layout: post
 author: David Sillman
 title: "Modular YAML I: a custom \"import\" tag"
+related: [yamlextras-ii, yamlextras-iii, yamlextras-release]
 ---
 
 Since I've started working at Intuitive full-time, I've been interacting with YAML files in some capacity pretty much 

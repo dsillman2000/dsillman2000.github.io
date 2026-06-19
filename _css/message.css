@@ -1,0 +1,7 @@
+.message {
+  padding: var(--spacer);
+  margin-bottom: var(--spacer);
+  color: var(--highlight-color);
+  background-color: var(--highlight-bg);
+  border-radius: var(--radius-default);
+}

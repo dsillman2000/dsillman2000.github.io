@@ -66,7 +66,7 @@ def add_bottom_border(p, color=BLUE_HEX, sz="6"):
 
 
 def add_hyperlink(paragraph, text, url, font_name=MONO, size=Pt(8),
-                  color_hex=BLUE_HEX):
+                  color_hex=BLUE_HEX, bold=False):
     part = paragraph.part
     r_id = part.relate_to(
         url,
@@ -95,6 +95,10 @@ def add_hyperlink(paragraph, text, url, font_name=MONO, size=Pt(8),
     c = OxmlElement("w:color")
     c.set(qn("w:val"), color_hex)
     rPr.append(c)
+
+    if bold:
+        b = OxmlElement("w:b")
+        rPr.append(b)
 
     u = OxmlElement("w:u")
     u.set(qn("w:val"), "none")
@@ -415,8 +419,9 @@ def build_resume():
     pf.left_indent = Inches(0.35)
     pf.first_line_indent = Inches(-0.2)
     styled_run(p, "\u2022  ", size=Pt(8), color=DARK)
-    styled_run(p, "decision-tree-stuff", font_name=MONO, size=Pt(7.5),
-               color=BLUE, bold=True)
+    add_hyperlink(p, "decision-tree-stuff",
+                  "https://github.com/dsillman2000/decision-tree-stuff",
+                  size=Pt(7.5), bold=True)
     styled_run(
         p,
         ": Binary decision tree classifier supporting lazy and eager "
@@ -430,8 +435,9 @@ def build_resume():
     pf.left_indent = Inches(0.35)
     pf.first_line_indent = Inches(-0.2)
     styled_run(p, "\u2022  ", size=Pt(8), color=DARK)
-    styled_run(p, "yaml-reference-*", font_name=MONO, size=Pt(7.5),
-               color=BLUE, bold=True)
+    add_hyperlink(p, "yaml-reference-*",
+                  "https://github.com/dsillman2000/yaml-reference-specs",
+                  size=Pt(7.5), bold=True)
     styled_run(
         p,
         ": Python/TypeScript library for resolving YAML documents with "

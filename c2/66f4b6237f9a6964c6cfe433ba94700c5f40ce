@@ -1,0 +1,19 @@
+.opencode/skills/dsillman-rebase-swimmer/SKILL.md
+  s_8389caed1274a8::t_222221cbebd451 1-102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "c266f4b6237f9a6964c6cfe433ba94700c5f40ce",
+  "prompts": {},
+  "sessions": {
+    "s_8389caed1274a8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11de8b68effeM7jg4gfrkZUFPt",
+        "model": "north-mini-code-free"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

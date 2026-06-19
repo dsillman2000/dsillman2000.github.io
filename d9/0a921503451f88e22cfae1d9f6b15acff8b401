@@ -1,0 +1,24 @@
+build_resume.py
+  s_4643d18891c6dd::t_381e1b7a9d0b77 438-440
+  s_4643d18891c6dd::t_63209815adcb78 69
+  s_4643d18891c6dd::t_7bc494a06ec0b6 422-424
+  s_4643d18891c6dd::t_e107d76ffe4289 99-102
+_config.yml
+  s_4643d18891c6dd::t_ce9e392d533d2c 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "d90a921503451f88e22cfae1d9f6b15acff8b401",
+  "prompts": {},
+  "sessions": {
+    "s_4643d18891c6dd": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11e260326ffeiucyCxpRSbbVKE",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

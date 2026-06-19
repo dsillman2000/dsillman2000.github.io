@@ -1,0 +1,92 @@
+_css/message.css
+  s_6d4f6f239b1fdb::t_144e27421b1b5f 1-7
+archive.md
+  s_6d4f6f239b1fdb::t_a5670017bc0642 1-16
+_css/type.css
+  s_6d4f6f239b1fdb::t_1bc177d1e23a52 1-99
+_posts/2025-03-16-gcpstaticsite-ii.md
+  s_6d4f6f239b1fdb::t_4f5547e45914c7 5
+_includes/post-sidebar.html
+  s_6d4f6f239b1fdb::t_66e0846eed23db 1-42
+_config.yml
+  s_6d4f6f239b1fdb::t_c54eded6f72c0c 1-8,19,21-23,26,28-30,32-35,39-41,44-52
+_includes/head.html
+  s_6d4f6f239b1fdb::t_eed805989f95ab 1-28
+styles.css
+  s_6d4f6f239b1fdb::t_c5c1a07735d428 2
+_posts/2024-11-22-yamlextras.md
+  s_6d4f6f239b1fdb::t_c3ce28787dc87e 5
+_css/theme.css
+  s_6d4f6f239b1fdb::t_2248e870d25ef9 1-93
+_css/posts.css
+  s_6d4f6f239b1fdb::t_19e1150845b20a 1-58
+_css/syntax.css
+  s_6d4f6f239b1fdb::t_84f4037ca34711 102
+  s_6d4f6f239b1fdb::t_dd4207c2dff402 37
+  s_6d4f6f239b1fdb::t_dbd0b5c0b47f5f 81
+  s_6d4f6f239b1fdb::t_a125f6f62e3d91 1-36,38-80,82-101,103-107
+_css/sidebar.css
+  s_6d4f6f239b1fdb::t_a414fcfe17a296 1-157
+assets/swimmer-logo.svg
+  s_6d4f6f239b1fdb::t_cf32f97e863b44 1-41
+_posts/2024-11-26-yamlextras-iii.md
+  s_6d4f6f239b1fdb::t_afc4d9d1c280bd 5
+404.html
+  s_6d4f6f239b1fdb::t_2be8e60e174b84 1-10
+_layouts/default.html
+  s_6d4f6f239b1fdb::t_f8fa75ee64623b 2,4-86
+Makefile
+  s_6d4f6f239b1fdb::t_5d35c108685271 3,7-10,14,25-31
+_css/styles.css
+  s_6d4f6f239b1fdb::t_3536e1bb42306d 1-40
+about.md
+  s_6d4f6f239b1fdb::t_bc84dd5fabd90a 2,5,7,10,13
+_css/masthead.css
+  s_6d4f6f239b1fdb::t_486d9bfd9979e2 1-72
+_css/base.css
+  s_6d4f6f239b1fdb::t_dc151998dc31c5 1-72
+_posts/2025-03-09-gcpstaticsite.md
+  s_6d4f6f239b1fdb::t_4e69b760ca066e 5
+_layouts/post.html
+  s_6d4f6f239b1fdb::t_07de2277ddb13e 5-8,10
+_posts/2024-12-30-yamlextras-release.md
+  s_6d4f6f239b1fdb::t_dd4644f0768341 5
+index.md
+  s_6d4f6f239b1fdb::t_75e5397212560d 1-12
+_css/layout.css
+  s_6d4f6f239b1fdb::t_103533d46f72c4 16
+  s_6d4f6f239b1fdb::t_ab082cbd2cd550 1-15,17-20
+_layouts/page.html
+  s_6d4f6f239b1fdb::t_a8fc2de3b55250 1-8
+_posts/2024-11-25-yamlextras-ii.md
+  s_6d4f6f239b1fdb::t_8d790440583d01 5
+_css/toc.css
+  s_6d4f6f239b1fdb::t_ab153cb96ea57c 1-14
+_css/fonts.css
+  s_6d4f6f239b1fdb::t_5dc7bc6a2c806b 1-15
+_css/pagination.css
+  s_6d4f6f239b1fdb::t_23985d36367b3c 1-47
+Gemfile
+  s_6d4f6f239b1fdb::t_d275cc00c73b6a 8-11
+_css/code.css
+  s_6d4f6f239b1fdb::t_35a817e1c6eba4 15-16
+  s_6d4f6f239b1fdb::t_0e01b746e4eb16 1-14,17-53
+atom.xml
+  s_6d4f6f239b1fdb::t_45c26b443e5320 1-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "e54c9ef63b55b8dd7489ba71d51d8cffece47508",
+  "prompts": {},
+  "sessions": {
+    "s_6d4f6f239b1fdb": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11e68b6ddffeLosnKuCxu7OIqh",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

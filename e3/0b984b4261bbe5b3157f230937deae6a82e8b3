@@ -1,0 +1,19 @@
+build_resume.py
+  s_4643d18891c6dd::t_6214653299a566 334,339-354,383-386,389-393
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "e30b984b4261bbe5b3157f230937deae6a82e8b3",
+  "prompts": {},
+  "sessions": {
+    "s_4643d18891c6dd": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11e260326ffeiucyCxpRSbbVKE",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

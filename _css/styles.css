@@ -1,43 +1,13 @@
---- 
---- 
-@tailwind base;
-@tailwind components;
-
-.dark-inverted {
-  @apply dark:filter dark:invert;
-}
-
-.centered-image {
-  @apply block m-auto w-full 2xl:w-1/2;
-}
-
-.favicon-logo {
-  @apply w-10 h-10 ml-auto mr-5 my-auto;
-}
-
-@tailwind utilities;
-
+@import "tailwindcss";
 
 @layer components {
 
-  .w-responsive {
-    @apply w-4/5 lg:w-3/5;
+  .centered-image {
+    @apply block m-auto w-full 2xl:w-1/2;
   }
 
-  .text-responsive {
-    @apply text-3xl 2xl:text-2xl;
-  }
-
-  .pre-responsive {
-    @apply text-2xl 2xl:text-xl;
-  }
-
-  .mb-responsive {
-    @apply mb-8 2xl:mb-6;
-  }
-
-  .text-color-responsive {
-    @apply text-gray-900 dark:text-gray-100;
+  .favicon-logo {
+    @apply w-10 h-10 ml-auto mr-5 my-auto;
   }
 
   div.homepage-container {
@@ -52,8 +22,6 @@
   p.page-last-modified {
     @apply text-right indent-0 mt-auto mb-0;
   }
-
-
 
   div.homepage-title,
   div.about-title,
@@ -73,9 +41,8 @@
     @apply mt-auto pb-0;
   }
 
-
   body {
-    @apply flex flex-col font-sans w-responsive min-h-screen mx-auto;
+    @apply flex flex-col font-sans w-4/5 lg:w-3/5 min-h-screen mx-auto;
     @apply bg-gray-100 dark:bg-gray-900;
   }
 
@@ -84,11 +51,11 @@
   }
 
   details {
-    @apply text-responsive text-color-responsive;
+    @apply text-3xl 2xl:text-2xl text-gray-900 dark:text-gray-100;
   }
 
   details>summary {
-    @apply text-responsive font-semibold mb-6 text-blue-500;
+    @apply text-3xl 2xl:text-2xl font-semibold mb-6 text-blue-500;
   }
 
   nav>a {
@@ -96,32 +63,32 @@
   }
 
   p {
-    @apply text-responsive mb-6 indent-12;
-    @apply text-color-responsive;
+    @apply text-3xl 2xl:text-2xl mb-6 indent-12;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   h1 {
     @apply text-4xl font-bold mb-6;
-    @apply text-color-responsive;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   h2 {
     @apply text-3xl font-bold mb-6;
-    @apply text-color-responsive;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   h3 {
     @apply text-2xl font-bold mb-6;
-    @apply text-color-responsive;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   h4 {
     @apply text-xl font-bold mb-6;
-    @apply text-color-responsive;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   a {
-    @apply text-blue-500 font-semibold text-responsive;
+    @apply text-blue-500 font-semibold text-3xl 2xl:text-2xl;
   }
 
   hr {
@@ -179,17 +146,16 @@
   }
 
   li {
-    @apply text-responsive mb-responsive;
-    @apply text-color-responsive;
+    @apply text-3xl 2xl:text-2xl mb-8 2xl:mb-6;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   pre {
-    @apply pre-responsive my-6 p-6 overflow-x-auto;
+    @apply text-2xl 2xl:text-xl my-6 p-6 overflow-x-auto;
   }
 
   pre.highlight {
     @apply bg-gray-200;
-    @apply dark-inverted;
   }
 
   h2>code {
@@ -201,21 +167,16 @@
   a>code,
   strong>code,
   summary>code {
-    @apply pre-responsive bg-gray-200 dark:bg-gray-700 rounded-lg px-1 mx-1;
+    @apply text-2xl 2xl:text-xl bg-gray-200 dark:bg-gray-700 rounded-lg px-1 mx-1;
   }
 
   p>code,
   li>code {
-    @apply text-color-responsive;
-  }
-
-  details pre.highlight>code,
-  li pre.highlight>code {
-    @apply dark-inverted;
+    @apply text-gray-900 dark:text-gray-100;
   }
 
   blockquote {
-    @apply text-responsive italic border-l-4 border-gray-500 dark:border-gray-400 pl-4 my-6 ;
+    @apply text-3xl 2xl:text-2xl italic border-l-4 border-gray-500 dark:border-gray-400 pl-4 my-6;
   }
 
   blockquote p,
@@ -232,7 +193,6 @@
   }
 
   footer {
-    /* stick to bottom */
     @apply mt-auto;
   }
 }

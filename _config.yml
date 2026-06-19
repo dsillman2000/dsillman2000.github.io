@@ -40,7 +40,6 @@ exclude:
   - .opencode
   - .github
   - Makefile
-  - readme.md
   - compile-favicon.sh
 
 # Specify the author for blog posts

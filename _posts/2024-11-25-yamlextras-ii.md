@@ -2,6 +2,7 @@
 layout: post
 author: David Sillman
 title: "Modular YAML II: merging imports"
+related: [yamlextras, yamlextras-iii, yamlextras-release]
 ---
 
 Where we last left off, I was just able to import a whole YAML file's contents into another YAML file using a custom

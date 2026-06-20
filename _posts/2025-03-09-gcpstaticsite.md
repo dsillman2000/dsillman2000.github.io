@@ -2,6 +2,7 @@
 layout: post
 author: David Sillman
 title: "TF-GCP I: Provisioning GCP resources with Terraform"
+related: [gcpstaticsite-ii]
 ---
 
 I was recently challenged at work to come up with a long-term personal development goal for the year. I suck at doing that stuff. But as our team is moving increasingly towards cloud computing, I *do know* that eventually I will hit a ceiling if I don't learn *something* about building complex systems in the Cloud. This article is my first stab at that on my own dime, and with my own time.

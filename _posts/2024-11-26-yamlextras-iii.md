@@ -2,6 +2,7 @@
 layout: post
 author: David Sillman
 title: "Modular YAML III: importing globs with \"import-all\""
+related: [yamlextras, yamlextras-ii, yamlextras-release]
 ---
 
 What happens when we want PyYAML to dynamically load an entire directory of YAML files into the contents of a single YAML document?

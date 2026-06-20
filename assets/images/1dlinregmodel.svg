@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="93.025764mm"
-   height="44.717583mm"
-   viewBox="0 0 93.025764 44.717583"
+   width="109.025764mm"
+   height="60.717583mm"
+   viewBox="-8 -8 109.025764 60.717583"
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
@@ -89,6 +89,14 @@
        height="46.289471"
        id="rect4294-5" />
   </defs>
+  <rect
+     x="-8"
+     y="-8"
+     width="109.025764"
+     height="60.717583"
+     rx="2"
+     ry="2"
+     style="fill:#fdf6e3" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"

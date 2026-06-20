@@ -1,0 +1,26 @@
+styles.css
+  s_7775eeb2f26993::t_243a8e9572c580 2
+_layouts/post.html
+  s_7775eeb2f26993::t_2a8daca4d876df 8,10-12
+  s_7775eeb2f26993::t_13fe13efba3c58 7,9
+_css/posts.css
+  s_7775eeb2f26993::t_c5511e4cac63d3 34-38,42
+  s_7775eeb2f26993::t_15e2498c5760d2 39-41,43-46,52-54
+  s_7775eeb2f26993::t_9306a0713113f9 47-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "2cab127e265b6ae4f3571fab7d42ea73c77e9166",
+  "prompts": {},
+  "sessions": {
+    "s_7775eeb2f26993": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_11db073ffffeRh2CkS41H0XRqj",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}

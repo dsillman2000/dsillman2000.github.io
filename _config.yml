@@ -18,10 +18,7 @@ compress_html:
 
 # Gems
 plugins:
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-seo-tag
-  - jekyll-last-modified-at
 
 # Optimize Jekyll
 exclude:

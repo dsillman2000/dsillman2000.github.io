@@ -4,7 +4,12 @@ layout: default
 {% include mathjax-head.html %}
 
 <article class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
+  <h1 class="post-title">
+    {{ page.title }}<span class="post-link-copy" onclick="copyPostLink()" title="Copy link to post"><svg xmlns="http://www.w3.org/2000/svg" width="0.6em" height="0.6em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+  </h1>
+  <script>
+    function copyPostLink(){var t=document.createElement("textarea");t.value=window.location.href;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);}
+  </script>
   <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
   {{ content }}
 </article>

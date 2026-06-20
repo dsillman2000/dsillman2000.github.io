@@ -31,6 +31,27 @@
   }
 }
 
+.post-title {
+  display: flex;
+  align-items: baseline;
+}
+
+.post-link-copy {
+  cursor: pointer;
+  color: var(--color-gray-400);
+  margin-left: auto;
+  transition: color .15s ease;
+
+  &:hover {
+    color: var(--color-gray-600);
+  }
+
+  svg {
+    display: inline;
+    vertical-align: middle;
+  }
+}
+
 .post-date {
   display: block;
   margin-top: -.5rem;

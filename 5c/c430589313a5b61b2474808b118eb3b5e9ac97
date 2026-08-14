@@ -1,0 +1,24 @@
+_redirects
+  s_2f0335c569f04f::t_7709da5e1fd75f 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "5cc430589313a5b61b2474808b118eb3b5e9ac97",
+  "prompts": {},
+  "humans": {
+    "h_4cc74772b10fd4": {
+      "author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  },
+  "sessions": {
+    "s_2f0335c569f04f": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_00275f86cffeHcySLWweNDuW0r",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "dsillman2000 <dsillman2000@yahoo.com>"
+    }
+  }
+}
